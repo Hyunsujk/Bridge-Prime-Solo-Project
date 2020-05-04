@@ -4,7 +4,7 @@ import mapStoreToProps from "../../../redux/mapStoreToProps";
 import {
   Card,
   CardContent,
-  CardMedia,
+  Typography,
   CardActionArea,
   Grid,
 } from "@material-ui/core/";
@@ -16,14 +16,16 @@ class RegistrationMainPage extends Component {
   render() {
     return (
       <div>
-        <h2>Registration Main Page</h2>
-        <Grid container>
+        <h2>Join us on Bridge!</h2>
+        <Grid container spacing={8}>
           <Grid item lg={6} sm={6} xs={12}>
             <Card variant="outlined" style={{ margin: "5%" }}>
               <CardActionArea>
                 <CardContent>
                   <FontAwesomeIcon icon={faHouseUser} />
-                  <h3>I am a homeowner</h3>
+                  <Typography component="h3" variant="h4">
+                    I am a homeowner
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
@@ -33,7 +35,9 @@ class RegistrationMainPage extends Component {
               <CardActionArea>
                 <CardContent>
                   <FontAwesomeIcon icon={faToolbox} />
-                  <h3>I am a repairman</h3>
+                  <Typography component="h3" variant="h4">
+                    I am a repairman
+                  </Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
