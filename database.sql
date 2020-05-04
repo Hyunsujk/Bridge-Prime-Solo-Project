@@ -42,11 +42,21 @@ CREATE TABLE "type" (
     "type" varchar(20)
 );
 
-CREATE TABLE "price_range" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" int,
-    "min_price" int,
-    "max_price" int
+CREATE TABLE "user_price_range" (
+  "id" SERIAL PRIMARY KEY,
+  "user_id" int,
+  "min_price_id" int,
+  "max_price_id" int
+);
+
+CREATE TABLE "min_price" (
+  "id" SERIAL PRIMARY KEY,
+  "min_price" int
+);
+
+CREATE TABLE "max_price" (
+  "id" SERIAL PRIMARY KEY,
+  "max_price" int
 );
 
 CREATE TABLE "specialty" (
@@ -54,10 +64,15 @@ CREATE TABLE "specialty" (
     "specialty" varchar(100)
 );
 
+CREATE TABLE "user_radius" (
+  "id" SERIAL PRIMARY KEY,
+  "user_id" int,
+  "radius_id" int
+);
+
 CREATE TABLE "radius" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" int,
-    "radius" int
+  "id" SERIAL PRIMARY KEY,
+  "radius" int
 );
 
 CREATE TABLE "repairman_specialty" (
@@ -78,3 +93,7 @@ CREATE TABLE "event_user" (
     "event_id" int,
     "user_id" int
 );
+
+-- add data
+INSERT INTO "type" ("type")
+VALUES ('homeowner'),('repairman');
