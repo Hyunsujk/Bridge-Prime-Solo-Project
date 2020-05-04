@@ -6,14 +6,18 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
     "first_name" varchar(80) NOT NULL,
     "last_name" varchar(80) NOT NULL,
     "email" varchar(50) NOT NULL,
-    "address" varchar(200),
-    "zipcode" varchar(10) NOT NULL,
+    "address_line1" varchar(100),
+    "address_line2" varchar(100),
+    "city" varchar(100),
+    "state" varchar(2),
+    "zip_code" varchar(10) NOT NULL,
     "type_id" int
 );
+
 
 CREATE TABLE "profile_img" (
     "id" SERIAL PRIMARY KEY,
