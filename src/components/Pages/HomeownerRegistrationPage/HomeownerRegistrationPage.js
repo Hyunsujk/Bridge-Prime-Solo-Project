@@ -24,6 +24,7 @@ class HomeownerRegistrationPage extends Component {
       this.props.dispatch({
         type: "REGISTER_HOMEOWNER",
         payload: {
+          type_id: 1,
           username: this.state.username,
           password: this.state.password,
           first_name: this.state.first_name,

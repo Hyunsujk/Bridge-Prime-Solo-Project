@@ -25,6 +25,7 @@ class RepairmanRegistrationPage extends Component {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
         payload: {
+          type_id: 2,
           username: this.state.username,
           password: this.state.password,
           first_name: this.state.first_name,
