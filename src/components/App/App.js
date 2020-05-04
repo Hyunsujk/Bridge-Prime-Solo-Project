@@ -22,6 +22,7 @@ import RegisterPage from "../RegisterPage/RegisterPage";
 
 import "./App.css";
 import HomePage from "../Pages/HomePage/HomePage";
+import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
 
 class App extends Component {
   componentDidMount() {
@@ -40,6 +41,7 @@ class App extends Component {
             This is a route anyone can see, no login necessary */}
             <Route exact path="/about" component={AboutPage} />
             <Route exact path="/home" component={HomePage} />
+            <Route exact path="/landing" component={LandingPage} />
             {/* For protected routes, the view could show one of several things on the same route.
             Visiting localhost:3000/user will show the UserPage if the user is logged in.
             If the user is not logged in, the ProtectedRoute will show the 'Login' or 'Register' page.
@@ -60,7 +62,7 @@ class App extends Component {
               exact
               path="/registration"
               authRedirect="/admin"
-              component={RegisterPage}
+              component={RegistrationMainPage}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}
