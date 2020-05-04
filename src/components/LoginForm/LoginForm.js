@@ -64,25 +64,27 @@ class LoginForm extends Component {
             </label>
           </div>
           <div>
-            <input
-              className="log-in"
-              type="submit"
-              name="submit"
-              value="Log In"
-            />
+            <div>
+              <input
+                className="log-in"
+                type="submit"
+                name="submit"
+                value="Log In"
+              />
+            </div>
+            <div>
+              <input
+                type="button"
+                value="Register"
+                className="register"
+                onClick={() => {
+                  this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
+                  this.props.history.push("/registration");
+                }}
+              />
+            </div>
           </div>
         </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {
-              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
-            }}
-          >
-            Register
-          </button>
-        </center>
       </div>
     );
   }
