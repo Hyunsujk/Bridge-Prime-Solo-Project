@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 
 class RepairmanRegistrationPage extends Component {
   state = {
+    type_id: 2,
     username: "",
     password: "",
     first_name: "",
