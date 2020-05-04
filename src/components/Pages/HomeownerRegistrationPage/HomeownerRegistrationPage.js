@@ -5,6 +5,7 @@ import TextField from "@material-ui/core/TextField";
 
 class HomeownerRegistrationPage extends Component {
   state = {
+    type_id: 1,
     username: "",
     password: "",
     first_name: "",
