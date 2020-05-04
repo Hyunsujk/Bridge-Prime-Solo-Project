@@ -23,9 +23,6 @@ class HomePage extends Component {
           </div>
           <div className="grid-col grid-col_4">
             <h3>Img</h3>
-            {/* <button className="btn btn_sizeFull" onClick={this.onLogin}>
-              Login
-            </button> */}
           </div>
         </div>
       </div>
