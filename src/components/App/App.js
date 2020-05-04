@@ -19,6 +19,8 @@ import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
+import HomeownerRegistrationPage from "../Pages/HomeownerRegistrationPage/HomeownerRegistrationPage";
+import RepairmanRegistrationPage from "../Pages/RepairmanRegistrationPage/RepairmanRegistrationPage";
 
 import "./App.css";
 import HomePage from "../Pages/HomePage/HomePage";
@@ -63,6 +65,18 @@ class App extends Component {
               path="/registration"
               authRedirect="/admin"
               component={RegistrationMainPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/hregistration"
+              authRedirect="/admin"
+              component={HomeownerRegistrationPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/rregistration"
+              authRedirect="/admin"
+              component={RepairmanRegistrationPage}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

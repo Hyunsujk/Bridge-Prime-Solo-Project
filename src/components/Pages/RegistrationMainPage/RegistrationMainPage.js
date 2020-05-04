@@ -13,13 +13,29 @@ import { faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
 
 class RegistrationMainPage extends Component {
+  handleClick = (type) => (event) => {
+    this.props.history.push(`/${type}`);
+  };
+  registerHomeowner = (event) => {
+    this.props.dispatch({ type: "SET_TO_REGISTER_MODE_HOMEOWNER" });
+    this.props.history.push("/hregistration");
+  };
+  registerRepairman = (event) => {
+    this.props.dispatch({ type: "SET_TO_REGISTER_MODE_REPAIRMAN" });
+    this.props.history.push("/rregistration");
+  };
+
   render() {
     return (
       <div>
         <h2>Join us on Bridge!</h2>
-        <Grid container spacing={8}>
+        <Grid container>
           <Grid item lg={6} sm={6} xs={12}>
-            <Card variant="outlined" style={{ margin: "5%" }}>
+            <Card
+              variant="outlined"
+              style={{ margin: "5%" }}
+              onClick={this.registerHomeowner}
+            >
               <CardActionArea>
                 <CardContent>
                   <FontAwesomeIcon icon={faHouseUser} />
@@ -31,7 +47,11 @@ class RegistrationMainPage extends Component {
             </Card>
           </Grid>
           <Grid item lg={6} sm={6} xs={12}>
-            <Card variant="outlined" style={{ margin: "5%" }}>
+            <Card
+              variant="outlined"
+              style={{ margin: "5%" }}
+              onClick={this.registerRepairman}
+            >
               <CardActionArea>
                 <CardContent>
                   <FontAwesomeIcon icon={faToolbox} />

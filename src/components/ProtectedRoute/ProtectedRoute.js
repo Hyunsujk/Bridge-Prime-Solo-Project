@@ -5,6 +5,8 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
+import HomeownerRegistrationPage from "../Pages/HomeownerRegistrationPage/HomeownerRegistrationPage";
+import RepairmanRegistrationPage from "../Pages/RepairmanRegistrationPage/RepairmanRegistrationPage";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -38,6 +40,14 @@ const ProtectedRoute = (props) => {
     // if they are not logged in, check the loginMode on Redux State
     // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
+  } else if (store.loginMode === "registerHomeowner") {
+    // the the user is not logged in and the mode is not 'login'
+    // show the RegisterPage
+    ComponentToShow = HomeownerRegistrationPage;
+  } else if (store.loginMode === "registerRepairman") {
+    // the the user is not logged in and the mode is not 'login'
+    // show the RegisterPage
+    ComponentToShow = RepairmanRegistrationPage;
   } else {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
