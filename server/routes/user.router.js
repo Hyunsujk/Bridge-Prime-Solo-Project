@@ -68,29 +68,31 @@ router.post("/register/repairman", (req, res, next) => {
           userId,
           user.radius_id,
         ])
-        .then(() => res.sendStatus(201))
+        .then(() => {
+          pool
+            .query(
+              `INSERT INTO "user_price_range" (user_id, min_price, max_price) VALUES($1,$2,$3)`,
+              [userId, user.min_price, user.max_price]
+            )
+            .then(() => {
+              pool
+                .query(
+                  `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES($1,$2)`,
+                  [userId, user.specialty_id]
+                )
+                .then(() => res.sendStatus(201))
+                .catch((err) => {
+                  console.log("Error saving user_specialty", err);
+                  res.sendStatus(500);
+                });
+            })
+            .catch((err) => {
+              console.log("Error saving user_price_range", err);
+              res.sendStatus(500);
+            });
+        })
         .catch((err) => {
           console.log("Error saving user_radius", err);
-          res.sendStatus(500);
-        });
-      pool
-        .query(
-          `INSERT INTO "user_price_range" (user_id, min_price, max_price) VALUES($1,$2,$3)`,
-          [userId, user.min_price, user.max_price]
-        )
-        .then(() => res.sendStatus(201))
-        .catch((err) => {
-          console.log("Error saving user_price_range", err);
-          res.sendStatus(500);
-        });
-      pool
-        .query(
-          `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES($1,$2)`,
-          [userId, user.specialty_id]
-        )
-        .then(() => res.sendStatus(201))
-        .catch((err) => {
-          console.log("Error saving user_specialty", err);
           res.sendStatus(500);
         });
     })
