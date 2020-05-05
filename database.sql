@@ -15,6 +15,7 @@ CREATE TABLE "user" (
     "city" varchar(100),
     "state" varchar(2),
     "zip_code" varchar(10) NOT NULL,
+    "introduction" varchar(1000),
     "type_id" int
 );
 
@@ -45,17 +46,7 @@ CREATE TABLE "type" (
 CREATE TABLE "user_price_range" (
   "id" SERIAL PRIMARY KEY,
   "user_id" int,
-  "min_price_id" int,
-  "max_price_id" int
-);
-
-CREATE TABLE "min_price" (
-  "id" SERIAL PRIMARY KEY,
-  "min_price" int
-);
-
-CREATE TABLE "max_price" (
-  "id" SERIAL PRIMARY KEY,
+  "min_price" int,
   "max_price" int
 );
 
@@ -75,7 +66,7 @@ CREATE TABLE "radius" (
   "radius" int
 );
 
-CREATE TABLE "repairman_specialty" (
+CREATE TABLE "user_specialty" (
     "id" SERIAL PRIMARY KEY,
     "user_id" int,
     "specialty_id" int
@@ -97,3 +88,41 @@ CREATE TABLE "event_user" (
 -- add data
 INSERT INTO "type" ("type")
 VALUES ('homeowner'),('repairman');
+
+INSERT INTO "specialty" ("specialty")
+VALUES ('Plumbing'),
+('Electrical'),
+('Painting'),
+('Mounting&Wall hanging'),
+('Doors'),
+('Windows'),
+('walls(inside)'),
+('walls(outside)'),
+('Gutters'),
+('Shelving'),
+('Cabinets'),
+('Molding'),
+('Flooring'),
+('Tiling'),
+('Lighting'),
+('Major renovations'),
+('Deck, porch or patio'),
+('Drywall'),
+('Framing'),
+('Roofing'),
+('Siding'),
+('Countertops'),
+('Fencing'),
+('Heating and cooling'),
+('Foundation'),
+('Insulation');
+
+INSERT INTO "radius" ("radius")
+VALUES (5),
+(10),
+(15),
+(20),
+(25),
+(30),
+(35),
+(40);
