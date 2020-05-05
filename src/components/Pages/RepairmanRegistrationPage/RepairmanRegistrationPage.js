@@ -138,17 +138,12 @@ class RepairmanRegistrationPage extends Component {
             </select>
           </div>
           <div>
-            {this.props.criteria.specialty.map((item, index) => {
+            {this.props.criteria.specialty.map((item, index) => (
               <div key={index}>
-                <input
-                  type="radio"
-                  id={item.id}
-                  value={item.specialty}
-                  name={item.specialty}
-                />
+                <input type="radio" id={item.id} value={item.id} />
                 <label htmlFor={item.id}>{item.specialty}</label>
-              </div>;
-            })}
+              </div>
+            ))}
           </div>
           <div>
             <TextField
