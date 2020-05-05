@@ -128,15 +128,27 @@ class RepairmanRegistrationPage extends Component {
               value={this.state.zip_code}
               onChange={this.handleInputChangeFor("zip_code")}
             />
+            <select onChange={this.changeSelectedRadius}>
+              <option value="">Select a radius</option>
+              {this.props.criteria.radius.map((item, index) => (
+                <option key={index} value={item.id}>
+                  {item.radius}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
-            <TextField
-              type="text"
-              label="Radius"
-              variant="outlined"
-              value={this.state.radius}
-              onChange={this.handleInputChangeFor("radius")}
-            />
+            {this.props.criteria.specialty.map((item, index) => {
+              <div key={index}>
+                <input
+                  type="radio"
+                  id={item.id}
+                  value={item.specialty}
+                  name={item.specialty}
+                />
+                <label htmlFor={item.id}>{item.specialty}</label>
+              </div>;
+            })}
           </div>
           <div>
             <TextField
@@ -173,14 +185,6 @@ class RepairmanRegistrationPage extends Component {
               onChange={this.handleInputChangeFor("introduction")}
             />
           </div>
-          <select onChange={this.changeSelectedRadius}>
-            <option value="">Select a radius</option>
-            {this.props.criteria.radius.map((item, index) => (
-              <option key={index} value={item.id}>
-                {item.radius}
-              </option>
-            ))}
-          </select>
         </form>
         <button onSubmit={this.registerRepairmanUser}>Create an account</button>
       </div>
