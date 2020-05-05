@@ -5,9 +5,11 @@ import TextField from "@material-ui/core/TextField";
 
 class HomeownerRegistrationPage extends Component {
   state = {
+    login: {
+      username: "",
+      password: "",
+    },
     type_id: 1,
-    username: "",
-    password: "",
     first_name: "",
     last_name: "",
     email: "",
@@ -21,13 +23,15 @@ class HomeownerRegistrationPage extends Component {
   registerHomeownerUser = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_HOMEOWNER",
         payload: {
           type_id: 1,
-          username: this.state.username,
-          password: this.state.password,
+          login: {
+            username: this.state.login.username,
+            password: this.state.login.password,
+          },
           first_name: this.state.first_name,
           last_name: this.state.last_name,
           email: this.state.email,
@@ -48,6 +52,15 @@ class HomeownerRegistrationPage extends Component {
       [propertyName]: event.target.value,
     });
   };
+
+  handleLoginChangeFor = (propertyName) => (event) => {
+    this.setState({
+      login: {
+        [propertyName]: event.target.value,
+      },
+    });
+  };
+
   render() {
     return (
       <div>
@@ -63,8 +76,8 @@ class HomeownerRegistrationPage extends Component {
               type="text"
               label="Username"
               variant="outlined"
-              value={this.state.username}
-              onChange={this.handleInputChangeFor("username")}
+              value={this.state.login.username}
+              onChange={this.handleLoginChangeFor("username")}
             />
           </div>
           <div>
@@ -72,8 +85,8 @@ class HomeownerRegistrationPage extends Component {
               type="password"
               label="Password"
               variant="outlined"
-              value={this.state.password}
-              onChange={this.handleInputChangeFor("password")}
+              value={this.state.login.password}
+              onChange={this.handleLoginChangeFor("password")}
             />
           </div>
           <div>
