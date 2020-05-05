@@ -11,7 +11,7 @@ function* registerHomeownerUser(action) {
     yield axios.post("api/user/register/homeowner", action.payload);
 
     // automatically log a user in after registration
-    yield put({ type: "LOGIN", payload: action.payload });
+    yield put({ type: "LOGIN", payload: action.payload.login });
 
     // set to 'login' mode so they see the login screen
     // after registration or after they log out
@@ -31,7 +31,7 @@ function* registerRepairmanUser(action) {
     yield axios.post("api/user/register/repairman", action.payload);
 
     // automatically log a user in after registration
-    yield put({ type: "LOGIN", payload: action.payload });
+    yield put({ type: "LOGIN", payload: action.payload.login });
 
     // set to 'login' mode so they see the login screen
     // after registration or after they log out
