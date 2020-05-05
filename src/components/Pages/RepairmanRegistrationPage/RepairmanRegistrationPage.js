@@ -14,7 +14,7 @@ class RepairmanRegistrationPage extends Component {
     last_name: "",
     email: "",
     zip_code: "",
-    radius_id: "",
+    radius_id: 0,
     specialty_id: "",
     min_price: "",
     max_price: "",
@@ -36,22 +36,7 @@ class RepairmanRegistrationPage extends Component {
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
-        payload: {
-          type_id: 2,
-          login: {
-            username: this.state.login.username,
-            password: this.state.login.password,
-          },
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          email: this.state.email,
-          zip_code: this.state.zip_code,
-          radius: this.state.radius,
-          specialty: this.state.specialty,
-          min_price: this.state.min_price,
-          max_price: this.state.max_price,
-          introduction: this.state.introduction,
-        },
+        payload: this.state,
       });
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
@@ -69,6 +54,14 @@ class RepairmanRegistrationPage extends Component {
       login: {
         [propertyName]: event.target.value,
       },
+    });
+  };
+
+  changeSelectedRadius = (event) => {
+    console.log(event.target.value);
+    this.setState({
+      ...this.state,
+      radius_id: event.target.value,
     });
   };
 
@@ -180,6 +173,14 @@ class RepairmanRegistrationPage extends Component {
               onChange={this.handleInputChangeFor("introduction")}
             />
           </div>
+          <select onChange={this.changeSelectedRadius}>
+            <option value="">Select a radius</option>
+            {this.props.criteria.radius.map((item, index) => (
+              <option key={index} value={item.id}>
+                {item.radius}
+              </option>
+            ))}
+          </select>
         </form>
         <button onSubmit={this.registerRepairmanUser}>Create an account</button>
       </div>
