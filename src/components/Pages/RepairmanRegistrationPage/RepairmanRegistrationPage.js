@@ -21,6 +21,15 @@ class RepairmanRegistrationPage extends Component {
     introduction: "",
   };
 
+  componentDidMount() {
+    this.props.dispatch({
+      type: "FETCH_RADIUS",
+    });
+    this.props.dispatch({
+      type: "FETCH_SPECIALTY",
+    });
+  }
+
   registerRepairmanUser = (event) => {
     event.preventDefault();
 
