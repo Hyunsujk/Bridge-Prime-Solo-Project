@@ -19,6 +19,9 @@ const customStyles = (theme) =>
       flexGrow: 1,
       textAlign: "left",
       margin: `0 0 ${theme.spacing(2)}`,
+      width: "100%",
+    },
+    appBar: {
       background: "#FF9800",
     },
     title: {
@@ -42,7 +45,7 @@ class NavBar extends Component {
     return (
       <div className={classes.root}>
         {/* <ThemeProvider theme={theme}> */}
-        <AppBar position="static" style={{ backgroundColor: "FF9800" }}>
+        <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <Link to="/home">
               <Typography variant="h4" component="h1" className={classes.title}>
