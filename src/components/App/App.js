@@ -18,12 +18,12 @@ import UserPage from "../UserPage/UserPage";
 import InfoPage from "../InfoPage/InfoPage";
 import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
 
 import "./App.css";
 import "../fonts/fonts.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
+import NavBar from "../NavBar/NavBar";
 
 class App extends Component {
   componentDidMount() {
@@ -34,7 +34,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          {/* <Nav /> */}
+          <NavBar />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
