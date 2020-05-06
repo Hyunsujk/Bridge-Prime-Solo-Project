@@ -17,11 +17,14 @@ const customStyles = (theme) =>
       textAlign: "left",
     },
     body: {
-      margin: `80px 100px 0`,
+      margin: `90px 100px 0`,
       maxWidth: "500px",
     },
     image: {
       margin: `13px 0 0 0`,
+    },
+    loginForm: {
+      marginTop: `50px`,
     },
   });
 class HomePage extends Component {
@@ -32,14 +35,16 @@ class HomePage extends Component {
         <Grid container spacing={2} className={classes.root}>
           <Grid item xs={8} className={classes.body}>
             <div>
-              <Typography component="h1" variant="h4">
+              <Typography component="h1" variant="h3">
                 Welcome to Bridge!
               </Typography>
               <Typography component="h2" variant="h5">
                 Where homeowners and repairmen connect
               </Typography>
             </div>
-            <LoginForm />
+            <div className={classes.loginForm}>
+              <LoginForm />
+            </div>
           </Grid>
           <Grid item xs={4} className={classes.image}>
             <div>
