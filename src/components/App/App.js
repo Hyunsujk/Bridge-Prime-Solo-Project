@@ -21,6 +21,7 @@ import LoginPage from "../LoginPage/LoginPage";
 import RegisterPage from "../RegisterPage/RegisterPage";
 
 import "./App.css";
+import "../fonts/fonts.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
 
