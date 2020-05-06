@@ -3,7 +3,7 @@ body {
   margin: 0px;
 }
 
-.alert {
+/* .alert {
   background-color: #ff4545;
   margin: 50px;
 }
@@ -38,10 +38,10 @@ input {
 .log-out:hover,
 .register:hover {
   background-color: #008183;
-}
+} */
 
 /* This line makes the "Register" and "Login" buttons look like links */
-.link-button {
+/* .link-button {
   background: none;
   color: inherit;
   border: none;
@@ -50,6 +50,6 @@ input {
   outline: 0;
   border-bottom: 1px solid #444;
   cursor: pointer;
-}
+} */
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");

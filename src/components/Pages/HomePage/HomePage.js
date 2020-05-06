@@ -3,27 +3,34 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
 import LoginForm from "../../LoginForm/LoginForm";
 import homepageImage from "../../img/homepage.jpg";
+import { Container, Typography } from "@material-ui/core";
 
 class HomePage extends Component {
   render() {
     return (
-      <div className="container">
-        <div className="grid">
-          <div className="grid-col grid-col_8">
-            <div>
-              <h3>Are you a homeowner?</h3>
-              <h4>Find a perfect repairman for your house!</h4>
+      <Container maxWidth={false}>
+        <div>
+          <div>
+            <Typography component="h2" variant="h4">
+              Are you a homeowner?
+            </Typography>
+            <Typography component="h3" variant="h5">
+              Find a perfect repairman for your house!
+            </Typography>
 
-              <h3>Are you a repairman?</h3>
-              <h4>Share your work for your prospective customer</h4>
-            </div>
-            <LoginForm />
+            <Typography component="h2" variant="h4">
+              Are you a repairman?
+            </Typography>
+            <Typography component="h3" variant="h5">
+              Share your work for your prospective customer
+            </Typography>
           </div>
-          <div className="grid-col grid-col_4">
-            <img src={homepageImage} width="300" alt="repair" />
-          </div>
+          <LoginForm />
         </div>
-      </div>
+        <div>
+          <img src={homepageImage} width="300" alt="repair" />
+        </div>
+      </Container>
     );
   }
 }
