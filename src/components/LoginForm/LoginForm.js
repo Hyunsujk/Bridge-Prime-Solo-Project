@@ -2,6 +2,53 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
+import {
+  withStyles,
+  createStyles,
+  Paper,
+  Typography,
+  TextField,
+  Button,
+  Container,
+} from "@material-ui/core";
+
+const customStyles = (theme) =>
+  createStyles({
+    loginButton: {
+      marginBottom: "10px",
+      color: "#142850",
+      "&:hover": {
+        color: "#fff",
+        background: "#035aa6",
+      },
+    },
+    registerButton: {
+      color: "#142850",
+      "&:hover": {
+        color: "#fff",
+        background: "#035aa6",
+      },
+    },
+    buttonDisplay: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexGrow: 1,
+    },
+    paper: {
+      maxWidth: "300px",
+    },
+    loginBox: {
+      marginLeft: "50px",
+    },
+    registerBox: {
+      marginLeft: "50px",
+      maxWidth: "300px",
+      display: "flex",
+      justifyContent: "flex-end",
+      flexGrow: 1,
+      alignItems: "baseline",
+    },
+  });
 
 class LoginForm extends Component {
   state = {
@@ -32,6 +79,7 @@ class LoginForm extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <div>
         {this.props.store.errors.loginMessage && (
@@ -39,55 +87,63 @@ class LoginForm extends Component {
             {this.props.store.errors.loginMessage}
           </h2>
         )}
-        <form className="formPanel" onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor("username")}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor("password")}
-              />
-            </label>
-          </div>
-          <div>
-            <div>
-              <input
-                className="log-in"
-                type="submit"
-                name="submit"
-                value="Log In"
-              />
-            </div>
-            <div>
-              <input
-                type="button"
-                value="Register"
-                className="register"
-                onClick={() => {
-                  this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
-                  this.props.history.push("/registration");
-                }}
-              />
-            </div>
-          </div>
-        </form>
+        <div className={classes.loginBox}>
+          <Typography component="h2" variant="body1">
+            Login
+          </Typography>
+          <Paper variant="outlined" className={classes.paper}>
+            <Container maxWidth={false}>
+              <form onSubmit={this.login}>
+                <div>
+                  <TextField
+                    type="text"
+                    label="Username"
+                    value={this.state.username}
+                    onChange={this.handleInputChangeFor("username")}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    type="password"
+                    label="Password"
+                    value={this.state.password}
+                    onChange={this.handleInputChangeFor("password")}
+                  />
+                </div>
+                <div className={classes.buttonDisplay}>
+                  <Button
+                    variant="outlined"
+                    size="small"
+                    className={classes.loginButton}
+                    onClick={this.login}
+                  >
+                    Log In
+                  </Button>
+                </div>
+              </form>
+            </Container>
+          </Paper>
+        </div>
+        <div className={classes.registerBox}>
+          <Typography component="h3" variant="body2">
+            New to Bridge?
+          </Typography>
+          <Button
+            size="small"
+            className={classes.registerButton}
+            onClick={() => {
+              this.props.dispatch({ type: "SET_TO_REGISTER_MODE" });
+              this.props.history.push("/registration");
+            }}
+          >
+            Register
+          </Button>
+        </div>
       </div>
     );
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(LoginForm));
+export default withStyles(customStyles)(
+  withRouter(connect(mapStoreToProps)(LoginForm))
+);
