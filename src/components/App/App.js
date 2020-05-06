@@ -20,6 +20,7 @@ import LandingPage from "../LandingPage/LandingPage";
 import LoginPage from "../LoginPage/LoginPage";
 
 import "./App.css";
+import "../fonts/fonts.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
 import NavBar from "../NavBar/NavBar";
@@ -69,7 +70,7 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );
