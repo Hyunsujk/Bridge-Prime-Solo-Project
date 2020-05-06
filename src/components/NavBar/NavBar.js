@@ -24,6 +24,11 @@ const customStyles = (theme) =>
     appBar: {
       background: "#FF9800",
     },
+    link: {
+      display: "flex",
+      justifyContent: "flex-end",
+      flexGrow: 2,
+    },
     title: {
       flexGrow: 1,
       color: "#fff",
@@ -47,13 +52,19 @@ class NavBar extends Component {
         {/* <ThemeProvider theme={theme}> */}
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
-            <Link to="/home">
-              <Typography variant="h4" component="h1" className={classes.title}>
-                Bridge
-              </Typography>
-            </Link>
-
             <div>
+              <Link to="/home">
+                <Typography
+                  variant="h4"
+                  component="h1"
+                  className={classes.title}
+                >
+                  Bridge
+                </Typography>
+              </Link>
+            </div>
+
+            <div className={classes.link}>
               <Link to={loginLinkData.path}>
                 {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
