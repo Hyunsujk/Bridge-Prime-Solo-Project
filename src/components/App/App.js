@@ -23,8 +23,10 @@ import HomeownerRegistrationPage from "../Pages/HomeownerRegistrationPage/Homeow
 import RepairmanRegistrationPage from "../Pages/RepairmanRegistrationPage/RepairmanRegistrationPage";
 
 import "./App.css";
+import "../fonts/fonts.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
+import NavBar from "../NavBar/NavBar";
 
 class App extends Component {
   componentDidMount() {
@@ -35,7 +37,8 @@ class App extends Component {
     return (
       <Router>
         <div>
-          <Nav />
+          {/* <Nav /> */}
+          <NavBar />
           <Switch>
             {/* Visiting localhost:3000 will redirect to localhost:3000/home */}
             <Redirect exact from="/" to="/home" />
@@ -82,7 +85,7 @@ class App extends Component {
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>
-          <Footer />
+          {/* <Footer /> */}
         </div>
       </Router>
     );
