@@ -20,6 +20,8 @@ const customStyles = (theme) =>
       textAlign: "left",
       margin: `0 0 ${theme.spacing(2)}`,
       width: "100%",
+      alignItems: "baseline",
+      underline: "hover",
     },
     appBar: {
       background: "#FF9800",
@@ -27,7 +29,11 @@ const customStyles = (theme) =>
     link: {
       display: "flex",
       justifyContent: "flex-end",
-      flexGrow: 2,
+      flexGrow: 1,
+    },
+    linkText: {
+      textDecoration: "none",
+      color: "#fff",
     },
     title: {
       flexGrow: 1,
@@ -53,7 +59,7 @@ class NavBar extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div>
-              <Link to="/home">
+              <Link to="/home" className={classes.linkText}>
                 <Typography
                   variant="h4"
                   component="h1"
@@ -65,7 +71,7 @@ class NavBar extends Component {
             </div>
 
             <div className={classes.link}>
-              <Link to={loginLinkData.path}>
+              <Link to={loginLinkData.path} className={classes.linkText}>
                 {/* Show this link if they are logged in or not,
           but call this link 'Home' if they are logged in,
           and call this link 'Login / Register' if they are not */}
@@ -79,7 +85,9 @@ class NavBar extends Component {
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
-              <Link to="/about">About</Link>
+              <Link to="/about" className={classes.linkText}>
+                About
+              </Link>
             </div>
           </Toolbar>
         </AppBar>
