@@ -12,17 +12,10 @@ class HomePage extends Component {
         <div>
           <div>
             <Typography component="h2" variant="h4">
-              Are you a homeowner?
+              Welcome to Bridge!
             </Typography>
             <Typography component="h3" variant="h5">
-              Find a perfect repairman for your house!
-            </Typography>
-
-            <Typography component="h2" variant="h4">
-              Are you a repairman?
-            </Typography>
-            <Typography component="h3" variant="h5">
-              Share your work for your prospective customer
+              Where homeowners and repairmen connect
             </Typography>
           </div>
           <LoginForm />
