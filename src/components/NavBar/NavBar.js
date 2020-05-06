@@ -20,8 +20,6 @@ const customStyles = (theme) =>
       textAlign: "left",
       margin: `0 0 ${theme.spacing(2)}`,
       width: "100%",
-      alignItems: "baseline",
-      underline: "hover",
     },
     appBar: {
       background: "#FF9800",
