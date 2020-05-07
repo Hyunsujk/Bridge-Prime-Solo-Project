@@ -119,6 +119,7 @@ class RepairmanRegistrationPage extends Component {
       ...this.state,
       radius_id: event.target.value,
     });
+    console.log(this.state.radius_id);
   };
 
   changeSelectedSpecialty = (event) => {
