@@ -21,7 +21,7 @@ const customStyles = (theme) =>
       maxWidth: "500px",
     },
     image: {
-      margin: `13px 0 0 0`,
+      margin: `auto`,
     },
     loginForm: {
       marginTop: `50px`,
