@@ -124,7 +124,7 @@ class HomeownerRegistrationPage extends Component {
 
           <form className={classes.form}>
             <Grid container spacing={4}>
-              <Grid item xs={6}>
+              <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
                     type="text"
@@ -176,7 +176,7 @@ class HomeownerRegistrationPage extends Component {
                   />
                 </div>
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
                     type="text"
