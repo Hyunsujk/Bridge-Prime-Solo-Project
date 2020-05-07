@@ -105,23 +105,12 @@ class HomeownerRegistrationPage extends Component {
             <Typography component="h1" variant="h4">
               Homeowner Registration Page
             </Typography>
-            <div className={classes.buttonDisplay}>
-              <Button
-                size="small"
-                variant="outlined"
-                className={classes.createAccountButton}
-                onSubmit={this.registerHomeownerUser}
-              >
-                Create an account
-              </Button>
-              {this.props.errors.registrationMessage && (
-                <h2 className="alert" role="alert">
-                  {this.props.errors.registrationMessage}
-                </h2>
-              )}
-            </div>
+            {this.props.errors.registrationMessage && (
+              <h2 className="alert" role="alert">
+                {this.props.errors.registrationMessage}
+              </h2>
+            )}
           </div>
-
           <form className={classes.form}>
             <Grid container spacing={4}>
               <Grid item xs={6} lg={6} md={6} sm={12}>
@@ -230,6 +219,16 @@ class HomeownerRegistrationPage extends Component {
               </Grid>
             </Grid>
           </form>
+          <div className={classes.buttonDisplay}>
+            <Button
+              size="small"
+              variant="outlined"
+              className={classes.createAccountButton}
+              onSubmit={this.registerHomeownerUser}
+            >
+              Create an account
+            </Button>
+          </div>
         </Container>
       </div>
     );
