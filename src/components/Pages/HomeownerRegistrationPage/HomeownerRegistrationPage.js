@@ -56,25 +56,11 @@ class HomeownerRegistrationPage extends Component {
 
   registerHomeownerUser = (event) => {
     event.preventDefault();
-
+    console.log("create an account");
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_HOMEOWNER",
-        payload: {
-          type_id: 1,
-          login: {
-            username: this.state.login.username,
-            password: this.state.login.password,
-          },
-          first_name: this.state.first_name,
-          last_name: this.state.last_name,
-          email: this.state.email,
-          address_line1: this.state.address_line1,
-          address_line2: this.state.address_line2,
-          city: this.state.city,
-          state: this.state.state,
-          zip_code: this.state.zip_code,
-        },
+        payload: this.state,
       });
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
@@ -83,13 +69,16 @@ class HomeownerRegistrationPage extends Component {
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
+      ...this.state,
       [propertyName]: event.target.value,
     });
   };
 
   handleLoginChangeFor = (propertyName) => (event) => {
     this.setState({
+      ...this.state,
       login: {
+        ...this.state.login,
         [propertyName]: event.target.value,
       },
     });
@@ -218,17 +207,18 @@ class HomeownerRegistrationPage extends Component {
                 </div>
               </Grid>
             </Grid>
+
+            <div className={classes.buttonDisplay}>
+              <Button
+                size="small"
+                variant="outlined"
+                className={classes.createAccountButton}
+                onClick={this.registerHomeownerUser}
+              >
+                Create an account
+              </Button>
+            </div>
           </form>
-          <div className={classes.buttonDisplay}>
-            <Button
-              size="small"
-              variant="outlined"
-              className={classes.createAccountButton}
-              onSubmit={this.registerHomeownerUser}
-            >
-              Create an account
-            </Button>
-          </div>
         </Container>
       </div>
     );
