@@ -2,6 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
 import {
+  withStyles,
+  createStyles,
+  Container,
   Card,
   CardContent,
   Typography,
@@ -11,6 +14,14 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faToolbox } from "@fortawesome/free-solid-svg-icons";
 import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
+
+const customStyles = (theme) =>
+  createStyles({
+    primaryHdg: { margin: "20px 0" },
+    card: { margin: "auto", textAlign: "center" },
+    cardActionArea: { height: "300px" },
+    cardContent: { margin: "10px" },
+  });
 
 class RegistrationMainPage extends Component {
   handleClick = (type) => (event) => {
@@ -26,46 +37,64 @@ class RegistrationMainPage extends Component {
   };
 
   render() {
+    const { classes } = this.props;
+
     return (
       <div>
-        <h2>Join us on Bridge!</h2>
-        <Grid container>
-          <Grid item lg={6} sm={6} xs={12}>
-            <Card
-              variant="outlined"
-              style={{ margin: "5%" }}
-              onClick={this.registerHomeowner}
-            >
-              <CardActionArea>
-                <CardContent>
-                  <FontAwesomeIcon icon={faHouseUser} />
-                  <Typography component="h3" variant="h4">
-                    I am a homeowner
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
+        <Container maxWidth={false}>
+          <div className={classes.primaryHdg}>
+            <Typography component="h1" variant="h4">
+              Join us on Bridge!
+            </Typography>
+          </div>
+          <Grid container spacing={4}>
+            <Grid item lg={6} sm={6} xs={12}>
+              <Card
+                variant="outlined"
+                className={classes.card}
+                onClick={this.registerHomeowner}
+              >
+                <CardActionArea className={classes.cardActionArea}>
+                  <CardContent>
+                    <FontAwesomeIcon icon={faHouseUser} size="9x" />
+                    <Typography
+                      component="h3"
+                      variant="h5"
+                      className={classes.cardContent}
+                    >
+                      I am a homeowner
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
+            <Grid item lg={6} sm={6} xs={12}>
+              <Card
+                variant="outlined"
+                className={classes.card}
+                onClick={this.registerRepairman}
+              >
+                <CardActionArea className={classes.cardActionArea}>
+                  <CardContent>
+                    <FontAwesomeIcon icon={faToolbox} size="9x" />
+                    <Typography
+                      component="h3"
+                      variant="h5"
+                      className={classes.cardContent}
+                    >
+                      I am a repairman
+                    </Typography>
+                  </CardContent>
+                </CardActionArea>
+              </Card>
+            </Grid>
           </Grid>
-          <Grid item lg={6} sm={6} xs={12}>
-            <Card
-              variant="outlined"
-              style={{ margin: "5%" }}
-              onClick={this.registerRepairman}
-            >
-              <CardActionArea>
-                <CardContent>
-                  <FontAwesomeIcon icon={faToolbox} />
-                  <Typography component="h3" variant="h4">
-                    I am a repairman
-                  </Typography>
-                </CardContent>
-              </CardActionArea>
-            </Card>
-          </Grid>
-        </Grid>
+        </Container>
       </div>
     );
   }
 }
 
-export default connect(mapStoreToProps)(RegistrationMainPage);
+export default withStyles(customStyles)(
+  connect(mapStoreToProps)(RegistrationMainPage)
+);
