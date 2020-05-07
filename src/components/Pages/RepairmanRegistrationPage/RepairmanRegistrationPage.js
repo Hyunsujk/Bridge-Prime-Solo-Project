@@ -98,13 +98,16 @@ class RepairmanRegistrationPage extends Component {
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
+      ...this.state,
       [propertyName]: event.target.value,
     });
   };
 
   handleLoginChangeFor = (propertyName) => (event) => {
     this.setState({
+      ...this.state,
       login: {
+        ...this.state.login,
         [propertyName]: event.target.value,
       },
     });
@@ -118,11 +121,31 @@ class RepairmanRegistrationPage extends Component {
     });
   };
 
-  changeSelectedSpecialty = (id) => (event) => {
-    this.setState({
-      ...this.state,
-      specialty_id: [...this.state.specialty_id, id],
-    });
+  changeSelectedSpecialty = (event) => {
+    console.log(event.target.value);
+    console.log(event.target.checked);
+    if (event.target.checked) {
+      this.setState({
+        ...this.state,
+        specialty_id: [...this.state.specialty_id, event.target.value],
+      });
+    }
+    // let itemChecked = this.state.itemChecked;
+    // console.log(this.state.itemChecked);
+    // console.log("itemChecked", itemChecked);
+    // console.log("event.target.checked", event.target.checked);
+    // itemChecked[item.id] = event.target.checked;
+    // console.log("item.id", itemChecked[item.id]);
+    // if (event.target.checked) {
+    //   this.setState({
+    //     ...this.state,
+    //     specialty_id: [...this.state.specialty_id, item.id],
+    //   });
+    // }
+    // //  else if (!event.target.checked){
+
+    // }
+
     console.log(this.state.specialty_id);
   };
 
@@ -295,10 +318,9 @@ class RepairmanRegistrationPage extends Component {
                                 id={item.id}
                                 control={
                                   <Checkbox
+                                    value={item.id}
                                     name={item.specialty}
-                                    onClick={this.changeSelectedSpecialty(
-                                      item.id
-                                    )}
+                                    onChange={this.changeSelectedSpecialty}
                                   />
                                 }
                                 label={
@@ -316,17 +338,17 @@ class RepairmanRegistrationPage extends Component {
                 </div>
               </Grid>
             </Grid>
+            <div className={classes.buttonDisplay}>
+              <Button
+                size="small"
+                variant="outlined"
+                className={classes.createAccountButton}
+                onClick={this.registerRepairmanUser}
+              >
+                Create an account
+              </Button>
+            </div>
           </form>
-          <div className={classes.buttonDisplay}>
-            <Button
-              size="small"
-              variant="outlined"
-              className={classes.createAccountButton}
-              onSubmit={this.registerRepairmanUser}
-            >
-              Create an account
-            </Button>
-          </div>
         </Container>
       </div>
     );
