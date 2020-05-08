@@ -97,7 +97,7 @@ class RepairmanRegistrationPage extends Component {
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
-        payload: { ...this.state, specialty_id: JSON.stringify(checkedBox) },
+        payload: { ...this.state, specialty_id: checkedBox },
       });
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });

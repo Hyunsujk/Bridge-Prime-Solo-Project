@@ -46,7 +46,6 @@ router.post("/register/homeowner", (req, res, next) => {
 
 router.post("/register/repairman", (req, res, next) => {
   const user = req.body;
-  console.log(user);
   const password = encryptLib.encryptPassword(req.body.login.password);
 
   const queryText =
@@ -76,12 +75,19 @@ router.post("/register/repairman", (req, res, next) => {
               [userId, user.min_price, user.max_price]
             )
             .then(() => {
+              let queryText = `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES`;
+              const dynamicQueryValues = [userId];
+              console.log(user.specialty_id);
+              for (let index = 0; index < user.specialty_id.length; index++) {
+                const item = user.specialty_id[index];
+                if (dynamicQueryValues.length > 1) {
+                  queryText = `${queryText},`;
+                }
+                queryText = `${queryText} ($1, $${index + 2})`;
+                dynamicQueryValues.push(item);
+              }
               pool
-                .query(
-                  `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES($1,$2)`,
-                  [userId, id]
-                )
-
+                .query(queryText, dynamicQueryValues)
                 .then(() => res.sendStatus(201))
                 .catch((err) => {
                   console.log("Error saving user_specialty", err);
