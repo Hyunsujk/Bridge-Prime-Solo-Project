@@ -56,6 +56,8 @@ const customStyles = (theme) =>
     },
   });
 
+const checkboxStatus = [];
+
 class RepairmanRegistrationPage extends Component {
   state = {
     login: {
@@ -122,30 +124,25 @@ class RepairmanRegistrationPage extends Component {
     console.log(this.state.radius_id);
   };
 
-  changeSelectedSpecialty = (event) => {
-    console.log(event.target.value);
-    console.log(event.target.checked);
-    if (event.target.checked) {
+ 
+
+  changeSelectedSpecialty = (item, event) => {
+   
+    let itemChecked = checkboxStatus;
+    itemChecked[item.id] = event.target.checked;
+    console.log(checkboxStatus);
+    this.checkboxStatus.filter((checkbox)=>(
+      
+    )
+
+    )
+    if () {
       this.setState({
         ...this.state,
-        specialty_id: [...this.state.specialty_id, event.target.value],
+        specialty_id: [...this.state.specialty_id, item.id],
       });
     }
-    // let itemChecked = this.state.itemChecked;
-    // console.log(this.state.itemChecked);
-    // console.log("itemChecked", itemChecked);
-    // console.log("event.target.checked", event.target.checked);
-    // itemChecked[item.id] = event.target.checked;
-    // console.log("item.id", itemChecked[item.id]);
-    // if (event.target.checked) {
-    //   this.setState({
-    //     ...this.state,
-    //     specialty_id: [...this.state.specialty_id, item.id],
-    //   });
-    // }
-    // //  else if (!event.target.checked){
-
-    // }
+    //  else if (!event.target.checked){
 
     console.log(this.state.specialty_id);
   };
@@ -321,7 +318,9 @@ class RepairmanRegistrationPage extends Component {
                                   <Checkbox
                                     value={item.id}
                                     name={item.specialty}
-                                    onChange={this.changeSelectedSpecialty}
+                                    onChange={(event) =>
+                                      this.changeSelectedSpecialty(item, event)
+                                    }
                                   />
                                 }
                                 label={
