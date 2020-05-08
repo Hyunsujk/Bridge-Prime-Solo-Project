@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import mapStoreToProps from "../../redux/mapStoreToProps";
+import mapStoreToProps from "../../../redux/mapStoreToProps";
 import MapView from "../../View/MapView/MapView";
 
 class LandingPage extends Component {
