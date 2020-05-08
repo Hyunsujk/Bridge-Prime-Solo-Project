@@ -66,7 +66,7 @@ class LoginForm extends Component {
         type: "LOGIN",
         payload: this.state.login,
       });
-      this.props.history.push("/landing");
+      this.props.history.push("/main");
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }

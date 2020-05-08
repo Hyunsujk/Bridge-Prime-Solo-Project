@@ -38,8 +38,8 @@ const ProtectedRoute = (props) => {
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
   } else if (store.loginMode === "login") {
-    // if they are not logged in, check the loginMode on Redux State
-    // if the mode is 'login', show the LoginPage
+    //   // if they are not logged in, check the loginMode on Redux State
+    //   // if the mode is 'login', show the LoginPage
     ComponentToShow = LoginPage;
   } else if (store.loginMode === "registerHomeowner") {
     // the the user is not logged in and the mode is not 'login'
