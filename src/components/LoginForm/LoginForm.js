@@ -66,6 +66,7 @@ class LoginForm extends Component {
         type: "LOGIN",
         payload: this.state.login,
       });
+      this.props.history.push("/landing");
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
@@ -74,6 +75,7 @@ class LoginForm extends Component {
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
       login: {
+        ...this.state.login,
         [propertyName]: event.target.value,
       },
     });
