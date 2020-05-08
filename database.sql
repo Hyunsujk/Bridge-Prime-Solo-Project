@@ -6,14 +6,19 @@
 CREATE TABLE "user" (
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR (80) UNIQUE NOT NULL,
-    "password" VARCHAR (1000) NOT NULL
+    "password" VARCHAR (1000) NOT NULL,
     "first_name" varchar(80) NOT NULL,
     "last_name" varchar(80) NOT NULL,
     "email" varchar(50) NOT NULL,
-    "address" varchar(200),
-    "zipcode" varchar(10) NOT NULL,
+    "address_line1" varchar(100),
+    "address_line2" varchar(100),
+    "city" varchar(100),
+    "state" varchar(2),
+    "zip_code" varchar(10) NOT NULL,
+    "introduction" varchar(1000),
     "type_id" int
 );
+
 
 CREATE TABLE "profile_img" (
     "id" SERIAL PRIMARY KEY,
@@ -38,11 +43,11 @@ CREATE TABLE "type" (
     "type" varchar(20)
 );
 
-CREATE TABLE "price_range" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" int,
-    "min_price" int,
-    "max_price" int
+CREATE TABLE "user_price_range" (
+  "id" SERIAL PRIMARY KEY,
+  "user_id" int,
+  "min_price" int,
+  "max_price" int
 );
 
 CREATE TABLE "specialty" (
@@ -50,13 +55,18 @@ CREATE TABLE "specialty" (
     "specialty" varchar(100)
 );
 
-CREATE TABLE "radius" (
-    "id" SERIAL PRIMARY KEY,
-    "user_id" int,
-    "radius" int
+CREATE TABLE "user_radius" (
+  "id" SERIAL PRIMARY KEY,
+  "user_id" int,
+  "radius_id" int
 );
 
-CREATE TABLE "repairman_specialty" (
+CREATE TABLE "radius" (
+  "id" SERIAL PRIMARY KEY,
+  "radius" int
+);
+
+CREATE TABLE "user_specialty" (
     "id" SERIAL PRIMARY KEY,
     "user_id" int,
     "specialty_id" int
@@ -74,3 +84,45 @@ CREATE TABLE "event_user" (
     "event_id" int,
     "user_id" int
 );
+
+-- add data
+INSERT INTO "type" ("type")
+VALUES ('homeowner'),('repairman');
+
+INSERT INTO "specialty" ("specialty")
+VALUES ('Plumbing'),
+('Electrical'),
+('Painting'),
+('Mounting&Wall hanging'),
+('Doors'),
+('Windows'),
+('walls(inside)'),
+('walls(outside)'),
+('Gutters'),
+('Shelving'),
+('Cabinets'),
+('Molding'),
+('Flooring'),
+('Tiling'),
+('Lighting'),
+('Major renovations'),
+('Deck, porch or patio'),
+('Drywall'),
+('Framing'),
+('Roofing'),
+('Siding'),
+('Countertops'),
+('Fencing'),
+('Heating and cooling'),
+('Foundation'),
+('Insulation');
+
+INSERT INTO "radius" ("radius")
+VALUES (5),
+(10),
+(15),
+(20),
+(25),
+(30),
+(35),
+(40);
