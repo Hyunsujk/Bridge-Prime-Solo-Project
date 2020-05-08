@@ -3,7 +3,7 @@ import errors from "./errors.reducer";
 import loginMode from "./loginMode.reducer";
 import user from "./user.reducer";
 import criteria from "./criteria.reducer";
-
+import cord from "./cord.reducer";
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -15,6 +15,7 @@ const rootReducer = combineReducers({
   loginMode, // will have a value of 'login' or 'registration' to control which screen is shown
   user, // will have an id and username if someone is logged in
   criteria, // will have criteria details for repairman
+  cord,
 });
 
 export default rootReducer;
