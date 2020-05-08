@@ -56,8 +56,6 @@ const customStyles = (theme) =>
     },
   });
 
-const checkboxStatus = [];
-
 class RepairmanRegistrationPage extends Component {
   state = {
     login: {
@@ -70,7 +68,7 @@ class RepairmanRegistrationPage extends Component {
     email: "",
     zip_code: "",
     radius_id: "",
-    specialty_id: "",
+    specialty_id: {},
     min_price: "",
     max_price: "",
     introduction: "",
@@ -88,10 +86,18 @@ class RepairmanRegistrationPage extends Component {
   registerRepairmanUser = (event) => {
     event.preventDefault();
 
+    let checkboxStatus = Object.keys(this.state.specialty_id);
+
+    let checkedBox = checkboxStatus.filter((itemKey) => {
+      return this.state.specialty_id[itemKey];
+    });
+
+    console.log(checkedBox);
+
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
-        payload: this.state,
+        payload: { ...this.state, specialty_id: JSON.stringify(checkedBox) },
       });
     } else {
       this.props.dispatch({ type: "REGISTRATION_INPUT_ERROR" });
@@ -117,34 +123,25 @@ class RepairmanRegistrationPage extends Component {
 
   changeSelectedRadius = (event) => {
     console.log(event.target.value);
-    this.setState({
-      ...this.state,
-      radius_id: event.target.value,
-    });
-    console.log(this.state.radius_id);
+    this.setState(
+      {
+        ...this.state,
+        radius_id: event.target.value,
+      },
+      () => {
+        console.log("radius", this.state.radius_id);
+      }
+    );
   };
 
- 
-
   changeSelectedSpecialty = (item, event) => {
-   
-    let itemChecked = checkboxStatus;
-    itemChecked[item.id] = event.target.checked;
-    console.log(checkboxStatus);
-    this.checkboxStatus.filter((checkbox)=>(
-      
-    )
-
-    )
-    if () {
-      this.setState({
-        ...this.state,
-        specialty_id: [...this.state.specialty_id, item.id],
-      });
-    }
-    //  else if (!event.target.checked){
-
-    console.log(this.state.specialty_id);
+    this.setState({
+      ...this.state,
+      specialty_id: {
+        ...this.state.specialty_id,
+        [item.id]: event.target.checked,
+      },
+    });
   };
 
   render() {
@@ -316,7 +313,7 @@ class RepairmanRegistrationPage extends Component {
                                 id={item.id}
                                 control={
                                   <Checkbox
-                                    value={item.id}
+                                    checked={this.state.specialty_id[item.id]}
                                     name={item.specialty}
                                     onChange={(event) =>
                                       this.changeSelectedSpecialty(item, event)

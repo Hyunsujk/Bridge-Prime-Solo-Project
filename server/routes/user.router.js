@@ -46,6 +46,7 @@ router.post("/register/homeowner", (req, res, next) => {
 
 router.post("/register/repairman", (req, res, next) => {
   const user = req.body;
+  console.log(user);
   const password = encryptLib.encryptPassword(req.body.login.password);
 
   const queryText =
@@ -78,8 +79,9 @@ router.post("/register/repairman", (req, res, next) => {
               pool
                 .query(
                   `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES($1,$2)`,
-                  [userId, user.specialty_id]
+                  [userId, id]
                 )
+
                 .then(() => res.sendStatus(201))
                 .catch((err) => {
                   console.log("Error saving user_specialty", err);
