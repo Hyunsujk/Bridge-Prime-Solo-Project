@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
-import MapBoxComponent from "../MapBoxComponent/MapBoxComponent";
+// import MapBoxComponent from "../MapBoxComponent/MapBoxComponent";
 
 class Map extends Component {
   onChange = (key) => (event) => {
@@ -30,9 +30,7 @@ class Map extends Component {
           <button onClick={this.search}>SEARCH</button>
         </div>
 
-        <div>
-          <MapBoxComponent />
-        </div>
+        <div>{/* <MapBoxComponent /> */}</div>
       </div>
     );
   }
