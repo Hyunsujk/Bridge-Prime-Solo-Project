@@ -46,7 +46,7 @@ class MapBoxComponent extends Component {
     return (
       <ReactMapGL
         {...this.state.viewport}
-        width="70vw"
+        width="60vw"
         height="70vh"
         mapStyle="mapbox://styles/mapbox/outdoors-v11"
         onViewportChange={this.viewportChange}
