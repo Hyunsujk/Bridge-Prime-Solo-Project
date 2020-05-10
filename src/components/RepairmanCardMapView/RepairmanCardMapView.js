@@ -31,9 +31,9 @@ class RepairmanCardMapView extends Component {
       <div>
         {this.props.store.repairman.map((repairman, index) => {
           console.log("repairman", repairman);
+          repairmanSpecialty = "";
           repairman.user_specialty_id.map((specialtyId, index) => {
             console.log("specialtyId", specialtyId);
-
             this.props.criteria.specialty.filter((specialty, index) => {
               if (specialty.id === specialtyId) {
                 repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
