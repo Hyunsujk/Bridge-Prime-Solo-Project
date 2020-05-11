@@ -313,7 +313,9 @@ class RepairmanRegistrationPage extends Component {
                                 id={item.id}
                                 control={
                                   <Checkbox
-                                    checked={this.state.specialty_id[item.id]}
+                                    checked={
+                                      this.state.specialty_id[item.id] || false
+                                    }
                                     name={item.specialty}
                                     onChange={(event) =>
                                       this.changeSelectedSpecialty(item, event)
