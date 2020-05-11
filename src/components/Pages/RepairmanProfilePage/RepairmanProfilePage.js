@@ -27,8 +27,8 @@ class RepairmanProfilePage extends Component {
 
   render() {
     const { classes } = this.props;
-    const repairmanSpecialtyId = this.props.repairman.selectedRepairman
-      .user_specialty_id;
+    const repairmanSpecialtyId =
+      this.props.repairman.selectedRepairman.user_specialty_id || [];
     console.log(repairmanSpecialtyId);
 
     return (
@@ -45,14 +45,17 @@ class RepairmanProfilePage extends Component {
           - ${this.props.repairman.selectedRepairman.user_max_price}
         </Typography>
         <Typography>Specialty</Typography>
-        {/* {repairmanSpecialtyId.map((specialtyId, index) => {
+        {repairmanSpecialtyId.map((specialtyId, index) => {
           console.log("specialtyId", specialtyId);
-          this.props.criteria.specialty.filter((specialty, index) => {
-            if (specialty.id === specialtyId) {
-              let repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
+          const repairmanSpecialty = this.props.criteria.specialty.filter(
+            (specialty) => {
+              return specialty.id == specialtyId;
             }
-          });
-        })} */}
+          );
+          return (
+            <p>{repairmanSpecialty[0] && repairmanSpecialty[0].specialty}</p>
+          );
+        })}
       </Container>
     );
   }
