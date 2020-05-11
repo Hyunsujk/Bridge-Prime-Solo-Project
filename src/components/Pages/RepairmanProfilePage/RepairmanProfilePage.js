@@ -48,7 +48,7 @@ class RepairmanProfilePage extends Component {
         {repairmanSpecialtyId.map((specialtyId, index) => {
           console.log("specialtyId", specialtyId);
           const repairmanSpecialty = this.props.criteria.specialty.filter(
-            (specialty, index) => {
+            (specialty) => {
               return specialty.id == specialtyId;
             }
           );
