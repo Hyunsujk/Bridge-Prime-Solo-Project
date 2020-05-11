@@ -48,7 +48,7 @@ class NavBar extends Component {
     };
 
     if (this.props.store.user.id != null) {
-      loginLinkData.path = "/admin";
+      loginLinkData.path = "/main";
       loginLinkData.text = "Home";
     }
     return (
