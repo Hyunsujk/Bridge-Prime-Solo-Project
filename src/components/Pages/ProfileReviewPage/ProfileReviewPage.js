@@ -3,6 +3,17 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
 
 class ProfileReviewPage extends Component {
+  componentDidMount() {
+    this.props.dispatch({
+      type: "FETCH_RADIUS",
+    });
+    this.props.dispatch({
+      type: "FETCH_SPECIALTY",
+    });
+    this.props.dispatch({
+      type: "GET_USER_DETAILS",
+    });
+  }
   render() {
     return (
       <div>
