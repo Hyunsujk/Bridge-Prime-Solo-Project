@@ -52,21 +52,21 @@ const customStyles = (theme) =>
 
 class LoginForm extends Component {
   state = {
-    username: "",
-    password: "",
+    login: {
+      username: "",
+      password: "",
+    },
   };
 
   login = (event) => {
     event.preventDefault();
 
-    if (this.state.username && this.state.password) {
+    if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "LOGIN",
-        payload: {
-          username: this.state.username,
-          password: this.state.password,
-        },
+        payload: this.state.login,
       });
+      this.props.history.push("/main");
     } else {
       this.props.dispatch({ type: "LOGIN_INPUT_ERROR" });
     }
@@ -74,7 +74,10 @@ class LoginForm extends Component {
 
   handleInputChangeFor = (propertyName) => (event) => {
     this.setState({
-      [propertyName]: event.target.value,
+      login: {
+        ...this.state.login,
+        [propertyName]: event.target.value,
+      },
     });
   };
 
@@ -98,7 +101,7 @@ class LoginForm extends Component {
                   <TextField
                     type="text"
                     label="Username"
-                    value={this.state.username}
+                    value={this.state.login.username}
                     onChange={this.handleInputChangeFor("username")}
                   />
                 </div>
@@ -106,7 +109,7 @@ class LoginForm extends Component {
                   <TextField
                     type="password"
                     label="Password"
-                    value={this.state.password}
+                    value={this.state.login.password}
                     onChange={this.handleInputChangeFor("password")}
                   />
                 </div>
