@@ -8,6 +8,7 @@ import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMain
 import HomeownerRegistrationPage from "../Pages/HomeownerRegistrationPage/HomeownerRegistrationPage";
 import RepairmanRegistrationPage from "../Pages/RepairmanRegistrationPage/RepairmanRegistrationPage";
 import LandingPage from "../Pages/LandingPage/LandingPage";
+import RepairmanProfilePage from "../Pages/RepairmanProfilePage/RepairmanProfilePage";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component

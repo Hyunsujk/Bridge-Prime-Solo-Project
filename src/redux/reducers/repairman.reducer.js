@@ -1,4 +1,15 @@
-const repairman = (state = [], action) => {
+import { combineReducers } from "redux";
+
+const availableRepairman = (state = [], action) => {
+  switch (action.type) {
+    case "SET_AVAILABLE_REPAIRMAN":
+      return action.payload;
+    default:
+      return state;
+  }
+};
+
+const selectedRepairman = (state = [], action) => {
   switch (action.type) {
     case "SET_REPAIRMAN":
       return action.payload;
@@ -7,4 +18,4 @@ const repairman = (state = [], action) => {
   }
 };
 
-export default repairman;
+export default combineReducers({ availableRepairman, selectedRepairman });

@@ -27,6 +27,7 @@ import "../fonts/fonts.css";
 import HomePage from "../Pages/HomePage/HomePage";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
 import NavBar from "../NavBar/NavBar";
+import RepairmanProfilePage from "../Pages/RepairmanProfilePage/RepairmanProfilePage";
 
 class App extends Component {
   componentDidMount() {
@@ -79,6 +80,11 @@ class App extends Component {
               path="/rregistration"
               authRedirect="/main"
               component={RepairmanRegistrationPage}
+            />
+            <ProtectedRoute
+              exact
+              path="/repairman/:id"
+              component={RepairmanProfilePage}
             />
 
             {/* If none of the other routes matched, we will show a 404. */}

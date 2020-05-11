@@ -5,7 +5,7 @@ function* getAvailableRepairman(action) {
   try {
     const response = yield axios.get("/api/repairman");
     yield put({
-      type: "SET_REPAIRMAN",
+      type: "SET_AVAILABLE_REPAIRMAN",
       payload: response.data,
     });
   } catch (err) {
