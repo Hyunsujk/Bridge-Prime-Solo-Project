@@ -45,14 +45,14 @@ class RepairmanProfilePage extends Component {
           - ${this.props.repairman.selectedRepairman.user_max_price}
         </Typography>
         <Typography>Specialty</Typography>
-        {repairmanSpecialtyId.map((specialtyId, index) => {
+        {/* {repairmanSpecialtyId.map((specialtyId, index) => {
           console.log("specialtyId", specialtyId);
           this.props.criteria.specialty.filter((specialty, index) => {
             if (specialty.id === specialtyId) {
               let repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
             }
           });
-        })}
+        })} */}
       </Container>
     );
   }
