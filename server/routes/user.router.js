@@ -19,13 +19,9 @@ router.get("/", rejectUnauthenticated, (req, res) => {
 // is that the password gets encrypted before being inserted
 router.get("/details", (req, res) => {
   userId = req.user.id;
-  let queryText = `SELECT * FROM "user" WHERE "user".id=$1;`;
-  pool
-    .query(queryText, [userId])
-    .then((responseDb) => {
-      console.log(responseDb.rows);
-      if (responseDb.rows[0].type_id === 2) {
-        queryText = `SELECT "user".id, "user_price_range".min_price as "user_min_price", "user_price_range".max_price as "user_max_price", "user_radius".radius_id as "user_radius_id", array_agg("user_specialty".specialty_id) as "user_specialty_id" FROM "user"
+  userType = req.user.type_id;
+  if (userType === 2) {
+    queryText = `SELECT "user".id, "user_price_range".min_price as "user_min_price", "user_price_range".max_price as "user_max_price", "user_radius".radius_id as "user_radius_id", array_agg("user_specialty".specialty_id) as "user_specialty_id" FROM "user"
         JOIN "user_price_range" ON "user".id="user_price_range".user_id
         JOIN "user_radius" ON "user".id="user_radius".user_id
         JOIN "user_specialty" ON "user".id="user_specialty".user_id
@@ -33,22 +29,17 @@ router.get("/details", (req, res) => {
         GROUP BY "user".id, "user_price_range".min_price, "user_price_range".max_price, "user_radius".radius_id
         ;
         `;
-        pool
-          .query(queryText, [responseDb.rows[0].id])
-          .then((responseDb) => {
-            res.send(responseDb.rows);
-            console.log(responseDb.rows);
-          })
-          .catch((err) => {
-            console.warn(err);
-            res.sendStatus(500);
-          });
-      }
-    })
-    .catch((err) => {
-      console.warn(err);
-      res.sendStatus(500);
-    });
+    pool
+      .query(queryText, [userId])
+      .then((responseDb) => {
+        res.send(responseDb.rows);
+        console.log(responseDb.rows);
+      })
+      .catch((err) => {
+        console.warn(err);
+        res.sendStatus(500);
+      });
+  }
 });
 
 router.post("/register/homeowner", (req, res, next) => {
