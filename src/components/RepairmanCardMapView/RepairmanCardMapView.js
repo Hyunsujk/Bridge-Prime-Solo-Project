@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import {
   Container,
@@ -24,12 +25,16 @@ class RepairmanCardMapView extends Component {
     });
   }
 
+  handleClickCard = (event, id) => {
+    this.props.history.push(`/repairman/${id}`);
+  };
+
   render() {
     let repairmanSpecialty = "";
 
     return (
       <div>
-        {this.props.store.repairman.map((repairman, index) => {
+        {this.props.repairman.availableRepairman.map((repairman, index) => {
           console.log("repairman", repairman);
           repairmanSpecialty = "";
           repairman.user_specialty_id.map((specialtyId, index) => {
@@ -42,7 +47,11 @@ class RepairmanCardMapView extends Component {
             console.log("repairmanSpecialty", repairmanSpecialty);
           });
           return (
-            <Card variant="outlined" key={index}>
+            <Card
+              variant="outlined"
+              key={index}
+              onClick={(event) => this.handleClickCard(event, repairman.id)}
+            >
               <CardActionArea>
                 <CardContent>
                   <Typography>
@@ -63,4 +72,4 @@ class RepairmanCardMapView extends Component {
   }
 }
 
-export default connect(mapStoreToProps)(RepairmanCardMapView);
+export default withRouter(connect(mapStoreToProps)(RepairmanCardMapView));
