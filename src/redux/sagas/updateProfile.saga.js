@@ -3,7 +3,11 @@ import axios from "axios";
 
 function* updateProfile(action) {
   try {
+    yield axios.delete(`/api/user/delete/specialty/${action.payload.id}`);
     yield axios.put("/api/user/update", action.payload);
+    if (action.payload.type_id === 2) {
+      yield axios.post("api/user/update/repairman", action.payload);
+    }
     yield put({
       type: "FETCH_USER",
     });
