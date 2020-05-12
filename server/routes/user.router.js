@@ -42,6 +42,20 @@ router.get("/details", (req, res) => {
   }
 });
 
+router.delete("/delete/specialty/:id", (req, res) => {
+  const userId = req.params.id;
+  const queryText = `DELETE FROM "user_specialty" WHERE "user_id"=$1;`;
+  pool
+    .query(queryText, [userId])
+    .then((responseDb) => {
+      res.sendStatus(200);
+    })
+    .catch((err) => {
+      console.warn(err);
+      res.sendStatus(500);
+    });
+});
+
 router.put("/update", (req, res) => {
   const userInfo = req.body;
   const userType = req.body.type_id;
@@ -73,7 +87,7 @@ router.put("/update", (req, res) => {
     pool
       .query(queryText, [
         userInfo.first_name,
-        userInto.last_name,
+        userInfo.last_name,
         userInfo.email,
         userInfo.zip_code,
         userInfo.introduction,
@@ -91,16 +105,12 @@ router.put("/update", (req, res) => {
             pool
               .query(
                 `UPDATE "user_price_range" 
-            SET min_price=$1 max_price=$2
+            SET min_price=$1, max_price=$2
             WHERE user_id=$3;`,
                 [userInfo.min_price, userInfo.max_price, userInfo.id]
               )
               .then(() => {
-                // pool.query(`DELETE FROM "user_specialty" WHERE id=$1`, [userInfo.id])
-                // .then(()=>{
-                //   pool.query()
-                // })
-                // .catch(err=>)
+                res.sendStatus(200);
               })
               .catch((err) => {
                 console.warn("Error updating price range", err);
@@ -117,6 +127,29 @@ router.put("/update", (req, res) => {
         res.sendStatus(500);
       });
   }
+});
+
+router.post("/update/repairman", (req, res) => {
+  const user = req.body;
+  const userId = req.body.id;
+  let queryText = `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES`;
+  const dynamicQueryValues = [userId];
+
+  for (let index = 0; index < user.specialty_id.length; index++) {
+    const item = user.specialty_id[index];
+    if (dynamicQueryValues.length > 1) {
+      queryText = `${queryText},`;
+    }
+    queryText = `${queryText} ($1, $${index + 2})`;
+    dynamicQueryValues.push(item);
+  }
+  pool
+    .query(queryText, dynamicQueryValues)
+    .then(() => res.sendStatus(201))
+    .catch((err) => {
+      console.log("Error saving user_specialty", err);
+      res.sendStatus(500);
+    });
 });
 
 router.post("/register/homeowner", (req, res, next) => {
