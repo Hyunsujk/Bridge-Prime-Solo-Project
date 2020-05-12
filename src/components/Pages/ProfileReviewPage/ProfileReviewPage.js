@@ -93,6 +93,7 @@ class ProfileReviewPage extends Component {
 
     let newDetails = {
       ...this.state,
+      id: this.props.user.id,
       type_id: this.props.user.type_id,
       specialty_id: checkedBox,
     };
@@ -147,11 +148,11 @@ class ProfileReviewPage extends Component {
         newDetails.introduction = this.props.user.introduction;
       }
     }
-    console.log(newDetails);
-    // this.props.dispatch({
-    //   type: "UPDATE_PROFILE",
-    //   payload: newDetails,
-    // });
+    console.log(this.props.user.id);
+    this.props.dispatch({
+      type: "UPDATE_PROFILE",
+      payload: newDetails,
+    });
     this.setState({
       isEditable: false,
     });

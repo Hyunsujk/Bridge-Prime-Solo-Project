@@ -6,6 +6,7 @@ import openCageSaga from "./opencage.saga";
 import criteriaSaga from "./criteria.saga";
 import availableRepairmanSaga from "./availableRepairman.saga";
 import repairmanSaga from "./repairman.saga";
+import updateProfileSaga from "./updateProfile.saga";
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     openCageSaga(),
     availableRepairmanSaga(),
     repairmanSaga(),
+    updateProfileSaga(),
   ]);
 }
