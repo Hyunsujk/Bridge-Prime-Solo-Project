@@ -5,7 +5,11 @@ import user from "./user.reducer";
 import criteria from "./criteria.reducer";
 import cord from "./cord.reducer";
 import repairman from "./repairman.reducer";
+<<<<<<< HEAD
 import search from "./search.reducer";
+=======
+import userDetails from "./userDetails.reducer";
+>>>>>>> develop
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
 // This is imported in index.js as rootSaga
@@ -19,7 +23,11 @@ const rootReducer = combineReducers({
   criteria, // will have criteria details for repairman
   cord,
   repairman,
+<<<<<<< HEAD
   search,
+=======
+  userDetails,
+>>>>>>> develop
 });
 
 export default rootReducer;

@@ -44,12 +44,10 @@ class NavBar extends Component {
     const { classes } = this.props;
     let loginLinkData = {
       path: "/home",
-      text: "Login / Register",
     };
 
     if (this.props.store.user.id != null) {
       loginLinkData.path = "/main";
-      loginLinkData.text = "Home";
     }
     return (
       <div className={classes.root}>
@@ -57,7 +55,7 @@ class NavBar extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div>
-              <Link to="/home" className={classes.linkText}>
+              <Link to={loginLinkData.path} className={classes.linkText}>
                 <Typography
                   variant="h4"
                   component="h1"
@@ -69,23 +67,16 @@ class NavBar extends Component {
             </div>
 
             <div className={classes.link}>
-              <Link to={loginLinkData.path} className={classes.linkText}>
-                {/* Show this link if they are logged in or not,
-          but call this link 'Home' if they are logged in,
-          and call this link 'Login / Register' if they are not */}
-                {loginLinkData.text}
-              </Link>
               {/* Show the link to the info page and the logout button if the user is logged in */}
               {this.props.store.user.id && (
                 <>
-                  <Link to="/info">Info Page</Link>
+                  <Link to="/myprofile" className={classes.linkText}>
+                    My Profile
+                  </Link>
                   <LogOutButton />
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
-              <Link to="/about" className={classes.linkText}>
-                About
-              </Link>
             </div>
           </Toolbar>
         </AppBar>
