@@ -6,7 +6,6 @@ import {
   withStyles,
   createStyles,
   Container,
-  Grid,
   Typography,
 } from "@material-ui/core";
 const customStyles = (theme) => createStyles({});
@@ -36,6 +35,9 @@ class RepairmanProfilePage extends Component {
         <Typography>
           {this.props.repairman.selectedRepairman.first_name}
           {this.props.repairman.selectedRepairman.last_name}
+        </Typography>
+        <Typography>
+          Email: {this.props.repairman.selectedRepairman.email}
         </Typography>
         <Typography>
           {this.props.repairman.selectedRepairman.introduction}
