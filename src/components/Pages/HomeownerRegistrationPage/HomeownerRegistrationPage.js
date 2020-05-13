@@ -13,6 +13,9 @@ import {
 
 const customStyles = (theme) =>
   createStyles({
+    root: {
+      marginBottom: "25px",
+    },
     primaryHdg: { marginTop: "20px" },
     createAccountButton: {
       color: "#142850",
@@ -89,7 +92,7 @@ class HomeownerRegistrationPage extends Component {
 
     return (
       <div>
-        <Container maxWidth={false}>
+        <Container maxWidth={false} className={classes.root}>
           <div className={classes.primaryHdg}>
             <Typography component="h1" variant="h4">
               Homeowner Registration Page

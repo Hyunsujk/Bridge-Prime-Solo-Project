@@ -5,6 +5,7 @@ function* getAvailableRepairman(action) {
   try {
     const response = yield axios.get("/api/repairman");
     const data = [...response.data];
+    const openCagePromises = [];
 
     const openCageURL = `https://api.opencagedata.com/geocode/v1/json?`;
 
@@ -17,12 +18,16 @@ function* getAvailableRepairman(action) {
           key: process.env.REACT_APP_OPEN_CAGE,
         },
       };
-      axios.get(openCageURL, config).then((response) => {
-        const coordinate = response.data.results[0].geometry;
-        row.longitude = coordinate.lng;
-        row.latitude = coordinate.lat;
-      });
+      openCagePromises.push(
+        axios.get(openCageURL, config).then((response) => {
+          const coordinate = response.data.results[0].geometry;
+          row.longitude = coordinate.lng;
+          row.latitude = coordinate.lat;
+        })
+      );
     });
+
+    yield Promise.all(openCagePromises);
 
     yield put({
       type: "SET_AVAILABLE_REPAIRMAN",

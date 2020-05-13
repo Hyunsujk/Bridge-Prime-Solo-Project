@@ -153,7 +153,7 @@ class RepairmanRegistrationPage extends Component {
         <Container maxWidth={false}>
           <div className={classes.primaryHdg}>
             <Typography component="h1" variant="h4">
-              Repairman Registration Page
+              Repair Personnel Registration Page
             </Typography>
             {this.props.errors.registrationMessage && (
               <h2 className="alert" role="alert">
