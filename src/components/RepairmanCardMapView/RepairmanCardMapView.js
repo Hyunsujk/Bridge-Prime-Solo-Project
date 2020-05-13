@@ -58,7 +58,8 @@ class RepairmanCardMapView extends Component {
             console.log("specialtyId", specialtyId);
             this.props.criteria.specialty.filter((specialty, index) => {
               if (specialty.id === specialtyId) {
-                const specialtyName = specialty.specialty;
+                // const specialtyName = specialty.specialty;
+                // <Chip label={specialtyName} variant="outlined"/>
                 repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
               }
             });
