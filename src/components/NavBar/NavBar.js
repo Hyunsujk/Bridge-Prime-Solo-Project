@@ -32,6 +32,7 @@ const customStyles = (theme) =>
     linkText: {
       textDecoration: "none",
       color: "#fff",
+      marginRight: "20px",
     },
     title: {
       flexGrow: 1,

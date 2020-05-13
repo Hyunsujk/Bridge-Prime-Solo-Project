@@ -20,9 +20,9 @@ class RepairmanCardMapView extends Component {
     this.props.dispatch({
       type: "FETCH_SPECIALTY",
     });
-    this.props.dispatch({
-      type: "GET_AVAILABLE_REPAIRMAN",
-    });
+    // this.props.dispatch({
+    //   type: "GET_AVAILABLE_REPAIRMAN",
+    // });
   }
 
   handleClickCard = (event, id) => {
