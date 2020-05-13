@@ -24,10 +24,12 @@ const customStyles = (theme) =>
     appBar: {
       background: "#FF9800",
     },
-    link: {
+    linkContainer: {
       display: "flex",
       justifyContent: "flex-end",
       flexGrow: 1,
+      flexDirection: "row",
+      alignItems: "baseline",
     },
     linkText: {
       textDecoration: "none",
@@ -37,6 +39,21 @@ const customStyles = (theme) =>
     title: {
       flexGrow: 1,
       color: "#fff",
+      display: "inline-block",
+    },
+    link: {
+      flexGrow: 1,
+      display: "inline-block",
+    },
+    logoutButton: {
+      border: "none",
+      backgroundColor: "#FF9800",
+      color: "#fff",
+      // "&:hover": {
+      // color: "#fff",
+      //   background: "#035aa6",
+      // },
+      size: "small",
     },
   });
 
@@ -67,14 +84,20 @@ class NavBar extends Component {
               </Link>
             </div>
 
-            <div className={classes.link}>
+            <div className={classes.linkContainer}>
               {/* Show the link to the info page and the logout button if the user is logged in */}
               {this.props.store.user.id && (
                 <>
                   <Link to="/myprofile" className={classes.linkText}>
-                    My Profile
+                    <Typography
+                      variant="body1"
+                      component="h2"
+                      className={classes.link}
+                    >
+                      My Profile
+                    </Typography>
                   </Link>
-                  <LogOutButton />
+                  <LogOutButton className={classes.logoutButton} />
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
