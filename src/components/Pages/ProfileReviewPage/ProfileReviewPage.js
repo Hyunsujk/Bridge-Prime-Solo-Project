@@ -97,6 +97,7 @@ class ProfileReviewPage extends Component {
       type_id: this.props.user.type_id,
       specialty_id: checkedBox,
     };
+
     if (newDetails.type_id === 1) {
       if (newDetails.first_name == null || newDetails.first_name === "") {
         newDetails.first_name = this.props.user.first_name;

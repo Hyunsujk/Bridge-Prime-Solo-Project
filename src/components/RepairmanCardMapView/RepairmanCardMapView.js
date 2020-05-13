@@ -10,7 +10,23 @@ import {
   CardActionArea,
   CardContent,
   Icon,
+  Chip,
+  withStyles,
+  createStyles,
 } from "@material-ui/core";
+
+const customStyles = (theme) =>
+  createStyles({
+    card: { margin: "10px" },
+    chip: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
+    },
+  });
 
 class RepairmanCardMapView extends Component {
   componentDidMount() {
@@ -31,6 +47,7 @@ class RepairmanCardMapView extends Component {
 
   render() {
     let repairmanSpecialty = "";
+    const { classes } = this.props;
 
     return (
       <div>
@@ -41,6 +58,7 @@ class RepairmanCardMapView extends Component {
             console.log("specialtyId", specialtyId);
             this.props.criteria.specialty.filter((specialty, index) => {
               if (specialty.id === specialtyId) {
+                const specialtyName = specialty.specialty;
                 repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
               }
             });
@@ -51,17 +69,18 @@ class RepairmanCardMapView extends Component {
               variant="outlined"
               key={index}
               onClick={(event) => this.handleClickCard(event, repairman.id)}
+              className={classes.card}
             >
               <CardActionArea>
                 <CardContent>
-                  <Typography>
+                  <Typography variant="h6" component="h1">
                     {repairman.first_name} {repairman.last_name}
                   </Typography>
-                  <Typography>Specialty: {repairmanSpecialty}</Typography>
-                  <Typography>
+                  <Typography variant="body2" component="h2">
                     Price Range: ${repairman.user_min_price} - $
                     {repairman.user_max_price}
                   </Typography>
+                  <Typography>Specialty: {repairmanSpecialty}</Typography>
                 </CardContent>
               </CardActionArea>
             </Card>
@@ -72,4 +91,6 @@ class RepairmanCardMapView extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(RepairmanCardMapView));
+export default withStyles(customStyles)(
+  withRouter(connect(mapStoreToProps)(RepairmanCardMapView))
+);
