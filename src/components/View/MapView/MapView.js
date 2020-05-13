@@ -13,17 +13,15 @@ import {
 import RepairmanCardMapView from "../../RepairmanCardMapView/RepairmanCardMapView";
 
 class MapView extends Component {
-  // componentDidMount() {
-  //   this.props.dispatch({
-  //     type: "GET_AVAILABLE_REPAIRMAN",
-  //   });
-  // this.props.dispatch({
-  //   type: "FETCH_RADIUS",
-  // });
-  // this.props.dispatch({
-  //   type: "FETCH_SPECIALTY",
-  // });
-  // }
+  componentDidMount() {
+    this.props.dispatch({
+      type: "GET_AVAILABLE_REPAIRMAN",
+    });
+    // this.props.dispatch({
+    //   type: "FETCH_REPAIRMAN_CORD",
+
+    // });
+  }
 
   render() {
     console.log(this.props.store.repairman);

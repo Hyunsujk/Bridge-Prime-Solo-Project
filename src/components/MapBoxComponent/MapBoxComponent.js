@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import ReactMapGL from "react-map-gl";
+import ReactMapGL, { Marker } from "react-map-gl";
 import { connect } from "react-redux";
 import mapStoreToProps from "../../redux/mapStoreToProps";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faMapPin } from "@fortawesome/free-solid-svg-icons";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -43,6 +45,22 @@ class MapBoxComponent extends Component {
       this.forceUpdate();
     }
 
+    const marker = this.props.repairman.availableRepairman.map(
+      (repairman, index) => {
+        if (repairman.longitude && repairman.latitude) {
+          return (
+            <Marker
+              key={index}
+              latitude={repairman.latitude}
+              longitude={repairman.longitude}
+            >
+              repairman
+            </Marker>
+          );
+        }
+      }
+    );
+
     return (
       <ReactMapGL
         {...this.state.viewport}
@@ -52,7 +70,9 @@ class MapBoxComponent extends Component {
         onViewportChange={this.viewportChange}
         mapboxApiAccessToken={MAPBOX_TOKEN}
         onClick={this.clickMap}
-      />
+      >
+        {marker}
+      </ReactMapGL>
     );
   }
 }

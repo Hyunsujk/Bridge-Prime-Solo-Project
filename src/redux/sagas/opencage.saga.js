@@ -26,8 +26,29 @@ function* fetchOpenCage(action) {
   }
 }
 
+// function* fetchRepairman(action) {
+//   try {
+//     const config = {
+//       headers: { "Content-Type": "application/json" },
+//       // params: { q: encodeURI(zip_code), key: process.env.REACT_APP_OPEN_CAGE },
+//     };
+
+//     const openCageURL = `https://api.opencagedata.com/geocode/v1/json?`;
+
+//     const response = yield axios.get(openCageURL, config);
+//     console.log(response);
+//     yield put({
+//       type: "SET_REPAIRMAN_CORD",
+//       payload: response.data,
+//     });
+//   } catch (error) {
+//     console.log("Error in Open Cage call");
+//   }
+// }
+
 function* openCageSaga() {
   yield takeLatest("FETCH_OPEN_CAGE", fetchOpenCage);
+  // yield takeLatest("FETCH_REPAIRMAN_CORD", fetchRepairman);
 }
 
 export default openCageSaga;
