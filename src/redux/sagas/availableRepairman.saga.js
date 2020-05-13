@@ -4,6 +4,26 @@ import axios from "axios";
 function* getAvailableRepairman(action) {
   try {
     const response = yield axios.get("/api/repairman");
+    const data = [...response.data];
+
+    const openCageURL = `https://api.opencagedata.com/geocode/v1/json?`;
+
+    data.forEach((row) => {
+      const zip_code = row.zip_code;
+      const config = {
+        headers: { "Content-Type": "application/json" },
+        params: {
+          q: encodeURI(zip_code),
+          key: process.env.REACT_APP_OPEN_CAGE,
+        },
+      };
+      axios.get(openCageURL, config).then((response) => {
+        const coordinate = response.data.results[0].geometry;
+        row.longitude = coordinate.lng;
+        row.latitude = coordinate.lat;
+      });
+    });
+
     yield put({
       type: "SET_AVAILABLE_REPAIRMAN",
       payload: response.data,
