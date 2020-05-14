@@ -1,9 +1,18 @@
 import React, { Component } from "react";
-import ReactMapGL, { Marker } from "react-map-gl";
+import ReactMapGL, { Marker, Popup } from "react-map-gl";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import RoomIcon from "@material-ui/icons/Room";
-import { withStyles, createStyles, LinearProgress } from "@material-ui/core";
+import {
+  withStyles,
+  createStyles,
+  LinearProgress,
+  IconButton,
+  Typography,
+  Button,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -21,6 +30,7 @@ class MapBoxComponent extends Component {
       bearing: 0,
       pitch: 0,
     },
+    selected: false,
   };
 
   viewportChange = (change) => {
@@ -45,6 +55,10 @@ class MapBoxComponent extends Component {
     });
   }
 
+  handleClickPopup = (event, id) => {
+    this.props.history.push(`/repairman/${id}`);
+  };
+
   render() {
     const { classes } = this.props;
 
@@ -63,11 +77,27 @@ class MapBoxComponent extends Component {
             latitude={repairman.latitude}
             longitude={repairman.longitude}
           >
-            <RoomIcon className={classes.pin} />
+            <IconButton
+              aria-label="delete"
+              onClick={(e) => {
+                e.preventDefault();
+                this.setState(
+                  {
+                    ...this.state,
+                    selected: true,
+                    selectedRepairmanInfo: repairman,
+                  },
+                  () => {
+                    console.log(this.state);
+                  }
+                );
+              }}
+            >
+              <RoomIcon className={classes.pin} />
+            </IconButton>
           </Marker>
         );
       });
-    console.log(marker);
 
     return (
       <div>
@@ -82,6 +112,33 @@ class MapBoxComponent extends Component {
             onClick={this.clickMap}
           >
             {marker}
+            {this.state.selected ? (
+              <Popup
+                latitude={this.state.selectedRepairmanInfo.latitude}
+                longitude={this.state.selectedRepairmanInfo.longitude}
+                // onClose={() => {
+                //   this.setState({ ...this.state.viewport, selected: false });
+                // }}
+              >
+                <div>
+                  {this.state.selectedRepairmanInfo.first_name}{" "}
+                  {this.state.selectedRepairmanInfo.last_name}
+                </div>
+                <div>
+                  <Button
+                    size="small"
+                    onClick={(event) => {
+                      this.handleClickPopup(
+                        event,
+                        this.state.selectedRepairmanInfo.id
+                      );
+                    }}
+                  >
+                    <Typography variant="caption">View Profile</Typography>
+                  </Button>
+                </div>
+              </Popup>
+            ) : null}
           </ReactMapGL>
         ) : (
           <LinearProgress />
@@ -92,5 +149,5 @@ class MapBoxComponent extends Component {
 }
 
 export default withStyles(customStyles)(
-  connect(mapStoreToProps)(MapBoxComponent)
+  withRouter(connect(mapStoreToProps)(MapBoxComponent))
 );

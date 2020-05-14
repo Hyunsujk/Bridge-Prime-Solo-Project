@@ -7,8 +7,23 @@ import {
   createStyles,
   Container,
   Typography,
+  Paper,
 } from "@material-ui/core";
-const customStyles = (theme) => createStyles({});
+const customStyles = (theme) =>
+  createStyles({
+    profileContent: {
+      textAlign: "left",
+    },
+    nameText: {
+      margin: "20px",
+      padding: "auto",
+    },
+    container: {
+      marginTop: "20px",
+      margin: "auto",
+      maxWidth: "75%",
+    },
+  });
 
 class RepairmanProfilePage extends Component {
   componentDidMount() {
@@ -31,34 +46,52 @@ class RepairmanProfilePage extends Component {
     console.log(repairmanSpecialtyId);
 
     return (
-      <Container>
-        <Typography>
-          {this.props.repairman.selectedRepairman.first_name}
-          {this.props.repairman.selectedRepairman.last_name}
-        </Typography>
-        <Typography>
-          Email: {this.props.repairman.selectedRepairman.email}
-        </Typography>
-        <Typography>
-          {this.props.repairman.selectedRepairman.introduction}
-        </Typography>
-        <Typography>
-          Price Range: ${this.props.repairman.selectedRepairman.user_min_price}{" "}
-          - ${this.props.repairman.selectedRepairman.user_max_price}
-        </Typography>
-        <Typography>Specialty</Typography>
-        {repairmanSpecialtyId.map((specialtyId, index) => {
-          console.log("specialtyId", specialtyId);
-          const repairmanSpecialty = this.props.criteria.specialty.filter(
-            (specialty) => {
-              return specialty.id == specialtyId;
-            }
-          );
-          return (
-            <p>{repairmanSpecialty[0] && repairmanSpecialty[0].specialty}</p>
-          );
-        })}
-      </Container>
+      <div className={classes.container}>
+        <Paper variant="outlined">
+          <center>
+            <Container maxWidth={false}>
+              <div>
+                <Typography
+                  className={classes.nameText}
+                  component="h1"
+                  variant="h4"
+                >
+                  {this.props.repairman.selectedRepairman.first_name}
+                  {this.props.repairman.selectedRepairman.last_name}
+                </Typography>
+                <div className={classes.profileContent}>
+                  <Typography>
+                    Email: {this.props.repairman.selectedRepairman.email}
+                  </Typography>
+                  <Typography>
+                    {this.props.repairman.selectedRepairman.introduction}
+                  </Typography>
+                  <Typography>
+                    Price Range: $
+                    {this.props.repairman.selectedRepairman.user_min_price} - $
+                    {this.props.repairman.selectedRepairman.user_max_price}
+                  </Typography>
+                  <Typography>Specialty</Typography>
+                  {repairmanSpecialtyId.map((specialtyId, index) => {
+                    console.log("specialtyId", specialtyId);
+                    const repairmanSpecialty = this.props.criteria.specialty.filter(
+                      (specialty) => {
+                        return specialty.id == specialtyId;
+                      }
+                    );
+                    return (
+                      <p>
+                        {repairmanSpecialty[0] &&
+                          repairmanSpecialty[0].specialty}
+                      </p>
+                    );
+                  })}
+                </div>
+              </div>
+            </Container>
+          </center>
+        </Paper>
+      </div>
     );
   }
 }

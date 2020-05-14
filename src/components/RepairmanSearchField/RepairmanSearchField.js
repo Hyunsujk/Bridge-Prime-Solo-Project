@@ -7,6 +7,7 @@ const customStyles = (theme) =>
   createStyles({
     search: {
       position: "relative",
+      border: "3px solid black",
       borderRadius: theme.shape.borderRadius,
       backgroundColor: fade(theme.palette.common.white, 0.15),
       "&:hover": {
