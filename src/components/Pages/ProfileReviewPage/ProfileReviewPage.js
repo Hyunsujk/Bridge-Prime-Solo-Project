@@ -9,6 +9,7 @@ import {
   withStyles,
   createStyles,
   Grid,
+  Chip,
   FormControl,
   InputLabel,
   MenuItem,
@@ -230,32 +231,33 @@ class ProfileReviewPage extends Component {
     const userDetails = this.props.store.userDetails[0] || [];
     const repairmanDetails = this.props.store.userDetails || [];
 
-    const repairmanSpecialtyId = repairmanDetails.map((details) => {
-      return details.user_specialty_id;
-    });
-    const repairmanRadiusId = repairmanDetails.map((details) => {
-      return details.user_radius_id;
+    let repairmanSpecialtyId = [];
+    repairmanDetails.forEach((details) => {
+      repairmanSpecialtyId = details.user_specialty_id;
     });
 
-    const repairmanSpecialtyDescription = repairmanSpecialtyId.map(
-      (specialty, index) => {
-        const repairmanSpecialtyName = specialty.map((specialtyId) => {
-          const repairmanSpecialty = this.props.criteria.specialty.filter(
-            (specialty) => {
-              return specialty.id == specialtyId;
-            }
+    let repairmanRadiusId = 0;
+    repairmanDetails.forEach((details) => {
+      repairmanRadiusId = details.user_radius_id;
+    });
+
+    let repairmanSpecialty = [];
+
+    repairmanSpecialtyId.forEach((specialtyId) => {
+      this.props.criteria.specialty.forEach((specialty) => {
+        if (specialty.id === specialtyId) {
+          repairmanSpecialty.push(
+            <Chip label={specialty.specialty} variant="outlined" />
           );
-          return <span>{repairmanSpecialty[0].specialty} </span>;
-        });
-        return <span>{repairmanSpecialtyName}</span>;
-      }
-    );
-
-    const selectedRadius = repairmanRadiusId.map((item) => {
-      const repairmanRadius = this.props.criteria.radius.filter((radius) => {
-        return radius.id === item;
+        }
       });
-      return <span> {repairmanRadius[0] && repairmanRadius[0].radius}</span>;
+    });
+
+    let userRadiusNum = 0;
+    this.props.criteria.radius.forEach((radius) => {
+      if (radius.id === repairmanRadiusId) {
+        userRadiusNum = radius.radius;
+      }
     });
 
     let userDetail = (
@@ -283,11 +285,11 @@ class ProfileReviewPage extends Component {
           <div className={classes.profileContent}>
             <Typography>Email: {this.props.user.email}</Typography>
             <Typography>Zip Code: {this.props.user.zip_code}</Typography>
-            <Typography>Radius:{selectedRadius} </Typography>
+            <Typography>Radius: {userRadiusNum} </Typography>
             <Typography>
               Introduction: {this.props.user.introduction}
             </Typography>
-            <Typography>Specialty: {repairmanSpecialtyDescription}</Typography>
+            <Typography>Specialty</Typography> <div>{repairmanSpecialty}</div>
           </div>
         </div>
       );

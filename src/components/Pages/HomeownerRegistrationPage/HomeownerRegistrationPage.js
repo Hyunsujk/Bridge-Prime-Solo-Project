@@ -108,6 +108,7 @@ class HomeownerRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Username"
                     variant="outlined"
@@ -118,6 +119,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="password"
                     label="Password"
                     variant="outlined"
@@ -128,6 +130,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="First Name"
                     variant="outlined"
@@ -138,6 +141,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Last Name"
                     variant="outlined"
@@ -148,6 +152,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Email"
                     variant="outlined"
@@ -160,6 +165,7 @@ class HomeownerRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Address Line 1"
                     variant="outlined"
@@ -170,6 +176,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Address Line 2"
                     variant="outlined"
@@ -180,6 +187,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="City"
                     variant="outlined"
@@ -190,6 +198,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="State"
                     variant="outlined"
@@ -200,6 +209,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Zip Code"
                     variant="outlined"

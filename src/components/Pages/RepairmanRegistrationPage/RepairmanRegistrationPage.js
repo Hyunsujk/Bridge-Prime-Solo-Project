@@ -24,7 +24,7 @@ const customStyles = (theme) =>
   createStyles({
     primaryHdg: { marginTop: "20px" },
     zipCodeBox: { display: "inline-block", marginLeft: "4px" },
-    zipCode: { width: "250px", marginRight: "14px" },
+    zipCode: { width: "210px", marginRight: "10px" },
     createAccountButton: {
       color: "#142850",
       "&:hover": {
@@ -44,7 +44,7 @@ const customStyles = (theme) =>
       width: "400px",
       margin: "5px",
     },
-    priceRangeBox: { width: "188px", margin: "5px" },
+    priceRangeBox: { width: "170px", margin: "5px" },
     formControlSelect: {
       minWidth: "120px",
       marginLeft: "10px",
@@ -166,6 +166,7 @@ class RepairmanRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Username"
                     variant="outlined"
@@ -176,6 +177,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="password"
                     label="Password"
                     variant="outlined"
@@ -186,6 +188,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="First Name"
                     variant="outlined"
@@ -196,6 +199,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Last Name"
                     variant="outlined"
@@ -206,6 +210,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Email"
                     variant="outlined"
@@ -217,6 +222,7 @@ class RepairmanRegistrationPage extends Component {
 
                 <div className={classes.zipCodeBox}>
                   <TextField
+                    required
                     type="text"
                     label="Zip Code"
                     variant="outlined"
@@ -225,6 +231,7 @@ class RepairmanRegistrationPage extends Component {
                     onChange={this.handleInputChangeFor("zip_code")}
                   />
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.formControlSelect}
                   >
@@ -251,6 +258,7 @@ class RepairmanRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Introduce Yourself"
                     variant="outlined"
@@ -264,6 +272,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.priceRangeBox}
                   >
@@ -280,6 +289,7 @@ class RepairmanRegistrationPage extends Component {
                     />
                   </FormControl>
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.priceRangeBox}
                   >
@@ -301,33 +311,39 @@ class RepairmanRegistrationPage extends Component {
                 <div>
                   <Container maxWidth={false}>
                     <Typography component="h3" variant="body1">
-                      Specialty
+                      Specialty *
                     </Typography>
                     <Paper variant="outlined" className={classes.paper}>
                       <Grid container>
                         {this.props.criteria.specialty.map((item, index) => (
                           <Grid item xs={4} key={index}>
                             <div className={classes.checkbox}>
-                              <FormControlLabel
-                                key={index}
-                                id={item.id}
-                                control={
-                                  <Checkbox
-                                    checked={
-                                      this.state.specialty_id[item.id] || false
-                                    }
-                                    name={item.specialty}
-                                    onChange={(event) =>
-                                      this.changeSelectedSpecialty(item, event)
-                                    }
-                                  />
-                                }
-                                label={
-                                  <Typography component="h4" variant="body2">
-                                    {item.specialty}
-                                  </Typography>
-                                }
-                              />
+                              <FormControl required component="fieldset">
+                                <FormControlLabel
+                                  key={index}
+                                  id={item.id}
+                                  control={
+                                    <Checkbox
+                                      checked={
+                                        this.state.specialty_id[item.id] ||
+                                        false
+                                      }
+                                      name={item.specialty}
+                                      onChange={(event) =>
+                                        this.changeSelectedSpecialty(
+                                          item,
+                                          event
+                                        )
+                                      }
+                                    />
+                                  }
+                                  label={
+                                    <Typography component="h4" variant="body2">
+                                      {item.specialty}
+                                    </Typography>
+                                  }
+                                />
+                              </FormControl>
                             </div>
                           </Grid>
                         ))}

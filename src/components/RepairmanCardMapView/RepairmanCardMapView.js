@@ -46,25 +46,23 @@ class RepairmanCardMapView extends Component {
   };
 
   render() {
-    let repairmanSpecialty = "";
     const { classes } = this.props;
 
     return (
       <div>
         {this.props.repairman.availableRepairman.map((repairman, index) => {
           console.log("repairman", repairman);
-          repairmanSpecialty = "";
-          repairman.user_specialty_id.map((specialtyId, index) => {
-            console.log("specialtyId", specialtyId);
-            this.props.criteria.specialty.filter((specialty, index) => {
+          let repairmanSpecialty = [];
+          repairman.user_specialty_id.forEach((specialtyId) => {
+            this.props.criteria.specialty.forEach((specialty) => {
               if (specialty.id === specialtyId) {
-                // const specialtyName = specialty.specialty;
-                // <Chip label={specialtyName} variant="outlined"/>
-                repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
+                repairmanSpecialty.push(
+                  <Chip label={specialty.specialty} variant="outlined" />
+                );
               }
             });
-            console.log("repairmanSpecialty", repairmanSpecialty);
           });
+
           return (
             <Card
               variant="outlined"
@@ -81,7 +79,10 @@ class RepairmanCardMapView extends Component {
                     Price Range: ${repairman.user_min_price} - $
                     {repairman.user_max_price}
                   </Typography>
-                  <Typography>Specialty: {repairmanSpecialty}</Typography>
+                  <Typography variant="body2" component="h2">
+                    Specialty
+                  </Typography>
+                  <div>{repairmanSpecialty}</div>
                 </CardContent>
               </CardActionArea>
             </Card>

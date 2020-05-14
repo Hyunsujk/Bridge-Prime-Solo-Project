@@ -45,16 +45,6 @@ const customStyles = (theme) =>
       flexGrow: 1,
       display: "inline-block",
     },
-    logoutButton: {
-      border: "none",
-      backgroundColor: "#FF9800",
-      color: "#fff",
-      // "&:hover": {
-      // color: "#fff",
-      //   background: "#035aa6",
-      // },
-      size: "small",
-    },
   });
 
 class NavBar extends Component {
@@ -97,7 +87,7 @@ class NavBar extends Component {
                       My Profile
                     </Typography>
                   </Link>
-                  <LogOutButton className={classes.logoutButton} />
+                  <LogOutButton />
                 </>
               )}
               {/* Always show this link since the about page is not protected */}
