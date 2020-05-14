@@ -116,9 +116,10 @@ class MapBoxComponent extends Component {
               <Popup
                 latitude={this.state.selectedRepairmanInfo.latitude}
                 longitude={this.state.selectedRepairmanInfo.longitude}
-                // onClose={() => {
-                //   this.setState({ ...this.state.viewport, selected: false });
-                // }}
+                closeOnClick={false}
+                onClose={() => {
+                  this.setState({ ...this.state.viewport, selected: false });
+                }}
               >
                 <div>
                   {this.state.selectedRepairmanInfo.first_name}{" "}
