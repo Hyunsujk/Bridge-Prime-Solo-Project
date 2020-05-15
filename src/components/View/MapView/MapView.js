@@ -3,12 +3,8 @@ import { connect } from "react-redux";
 import mapStoreToProps from "../../../redux/mapStoreToProps";
 import Map from "../../Map/Map";
 import {
-  Container,
   Grid,
   Typography,
-  Card,
-  CardActionArea,
-  CardContent,
   withStyles,
   createStyles,
   Paper,
@@ -19,6 +15,7 @@ const customStyles = (theme) =>
   createStyles({
     heading: { margin: "20px 0px 10px", flexGrow: 1 },
     headingPersonnel: { textAlign: "center", color: "#fff", paddingTop: "3px" },
+    mapHeading: { textAlign: "center" },
     paper: { background: "#3498db", paddingBottom: "10px" },
     scrollContainer: {
       marginTop: "10px",
@@ -42,9 +39,15 @@ class MapView extends Component {
       <div>
         <Grid container spacing={4}>
           <Grid item xs={8} lg={8} md={8} sm={12}>
-            <Typography component="h1" variant="h5" className={classes.heading}>
-              Find repair personnel in your area!
-            </Typography>
+            <div className={classes.mapHeading}>
+              <Typography
+                component="h1"
+                variant="h5"
+                className={classes.heading}
+              >
+                Find repair personnel in your area!
+              </Typography>
+            </div>
             <Map />
           </Grid>
           <Grid item xs={4} lg={4} md={4} sm={12}>

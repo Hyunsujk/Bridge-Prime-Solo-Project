@@ -33,7 +33,6 @@ router.get("/details", (req, res) => {
       .query(queryText, [userId])
       .then((responseDb) => {
         res.send(responseDb.rows);
-        console.log(responseDb.rows);
       })
       .catch((err) => {
         console.warn(err);
@@ -173,7 +172,6 @@ router.post("/register/homeowner", (req, res, next) => {
       user.type_id,
     ])
     .then((response) => {
-      console.log(response.rows[0].id);
       res.sendStatus(201);
     })
     .catch(() => res.sendStatus(500));
@@ -212,7 +210,6 @@ router.post("/register/repairman", (req, res, next) => {
             .then(() => {
               let queryText = `INSERT INTO "user_specialty" (user_id, specialty_id) VALUES`;
               const dynamicQueryValues = [userId];
-              console.log(user.specialty_id);
               for (let index = 0; index < user.specialty_id.length; index++) {
                 const item = user.specialty_id[index];
                 if (dynamicQueryValues.length > 1) {

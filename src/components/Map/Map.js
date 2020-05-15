@@ -8,7 +8,6 @@ import {
   fade,
   InputBase,
   Button,
-  Box,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 
@@ -61,15 +60,10 @@ const customStyles = (theme) =>
 
 class Map extends Component {
   onChange = (key) => (event) => {
-    this.setState(
-      {
-        ...this.state,
-        [key]: event.target.value,
-      },
-      () => {
-        console.log(this.state);
-      }
-    );
+    this.setState({
+      ...this.state,
+      [key]: event.target.value,
+    });
   };
   search = (event) => {
     this.props.dispatch({
@@ -100,10 +94,6 @@ class Map extends Component {
 
           <Button onClick={this.search}>Search</Button>
         </div>
-        {/* <div>
-          <input type="text" onChange={this.onChange("search_string")}></input>
-          <button onClick={this.search}>SEARCH</button>
-        </div> */}
 
         <div>
           <MapBoxComponent />

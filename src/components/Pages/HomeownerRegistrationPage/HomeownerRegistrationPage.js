@@ -59,7 +59,6 @@ class HomeownerRegistrationPage extends Component {
 
   registerHomeownerUser = (event) => {
     event.preventDefault();
-    console.log("create an account");
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_HOMEOWNER",

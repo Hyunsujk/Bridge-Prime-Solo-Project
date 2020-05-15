@@ -12,7 +12,6 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
-import { Link } from "react-router-dom";
 
 const MAPBOX_TOKEN = process.env.REACT_APP_MAPBOX_TOKEN;
 
@@ -81,16 +80,11 @@ class MapBoxComponent extends Component {
               aria-label="delete"
               onClick={(e) => {
                 e.preventDefault();
-                this.setState(
-                  {
-                    ...this.state,
-                    selected: true,
-                    selectedRepairmanInfo: repairman,
-                  },
-                  () => {
-                    console.log(this.state);
-                  }
-                );
+                this.setState({
+                  ...this.state,
+                  selected: true,
+                  selectedRepairmanInfo: repairman,
+                });
               }}
             >
               <RoomIcon className={classes.pin} />
