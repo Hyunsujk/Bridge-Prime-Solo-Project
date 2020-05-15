@@ -20,6 +20,7 @@ const customStyles = (theme) =>
     nameText: {
       margin: "20px",
       padding: "auto",
+      fontWeight: "500",
     },
     container: {
       margin: "80px auto 40px",
@@ -29,6 +30,7 @@ const customStyles = (theme) =>
     },
     paper: { margin: "auto 0" },
     introductionContainer: { marginTop: "10px" },
+    contentSpacing: { margin: "10px 0px" },
   });
 
 class RepairmanProfilePage extends Component {
@@ -75,25 +77,37 @@ class RepairmanProfilePage extends Component {
                   {this.props.repairman.selectedRepairman.last_name}
                 </Typography>
                 <div className={classes.profileContent}>
-                  <Typography>
-                    Email: {this.props.repairman.selectedRepairman.email}
-                  </Typography>
-
-                  <Typography>
-                    Price Range: $
-                    {this.props.repairman.selectedRepairman.user_min_price} - $
-                    {this.props.repairman.selectedRepairman.user_max_price}
-                  </Typography>
-                  <Typography>Specialty</Typography>
-                  <div>{repairmanSpecialty}</div>
-                  <div className={classes.introductionContainer}>
-                    <Typography>
-                      {this.props.repairman.selectedRepairman.first_name}{" "}
-                      says...
+                  <div className={classes.contentSpacing}>
+                    <Typography component="h2" variant="h6">
+                      Email{" "}
                     </Typography>
-                    <Typography>
-                      {this.props.repairman.selectedRepairman.introduction}
+                    <Typography component="h3" variant="subtitle1">
+                      {this.props.repairman.selectedRepairman.email}
                     </Typography>
+                  </div>
+                  <div className={classes.contentSpacing}>
+                    <Typography component="h2" variant="h6">
+                      Price Range
+                    </Typography>
+                    <Typography component="h3" variant="subtitle1">
+                      ${this.props.repairman.selectedRepairman.user_min_price} -
+                      ${this.props.repairman.selectedRepairman.user_max_price}
+                    </Typography>
+                  </div>
+                  <div className={classes.contentSpacing}>
+                    <Typography component="h2" variant="h6">
+                      Specialty
+                    </Typography>
+                    <div>{repairmanSpecialty}</div>
+                    <div className={classes.introductionContainer}>
+                      <Typography component="h2" variant="h6">
+                        {this.props.repairman.selectedRepairman.first_name}{" "}
+                        says...
+                      </Typography>
+                      <Typography component="h3" variant="subtitle1">
+                        {this.props.repairman.selectedRepairman.introduction}
+                      </Typography>
+                    </div>
                   </div>
                 </div>
               </div>
