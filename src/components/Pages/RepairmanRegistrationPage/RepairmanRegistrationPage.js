@@ -38,7 +38,13 @@ const customStyles = (theme) =>
       flexGrow: 1,
     },
     checkbox: {
-      margin: "0",
+      marginLeft: "10px",
+    },
+    checkboxBox: {
+      color: "#FF9800",
+      "&$checked": {
+        color: "#FF9800",
+      },
     },
     textField: {
       width: "400px",
@@ -53,6 +59,11 @@ const customStyles = (theme) =>
       marginTop: "20px",
       margin: "auto",
       maxWidth: "75%",
+    },
+    warning: {
+      color: "#fff",
+      background: "red",
+      textAlign: "center",
     },
   });
 
@@ -147,9 +158,13 @@ class RepairmanRegistrationPage extends Component {
               Repair Personnel Registration Page
             </Typography>
             {this.props.errors.registrationMessage && (
-              <h2 className="alert" role="alert">
+              <Typography
+                variant="h6"
+                component="h1"
+                className={classes.warning}
+              >
                 {this.props.errors.registrationMessage}
-              </h2>
+              </Typography>
             )}
           </div>
           <form className={classes.form}>

@@ -38,6 +38,11 @@ const customStyles = (theme) =>
       width: "400px",
       margin: "5px",
     },
+    warning: {
+      color: "#fff",
+      background: "red",
+      textAlign: "center",
+    },
   });
 
 class HomeownerRegistrationPage extends Component {
@@ -97,9 +102,13 @@ class HomeownerRegistrationPage extends Component {
               Homeowner Registration Page
             </Typography>
             {this.props.errors.registrationMessage && (
-              <h2 className="alert" role="alert">
+              <Typography
+                variant="h6"
+                component="h1"
+                className={classes.warning}
+              >
                 {this.props.errors.registrationMessage}
-              </h2>
+              </Typography>
             )}
           </div>
           <form className={classes.form}>

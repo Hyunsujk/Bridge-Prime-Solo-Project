@@ -24,8 +24,8 @@ import {
 const customStyles = (theme) =>
   createStyles({
     root: {
-      marginBottom: "63px",
-      marginTop: "50px",
+      marginBottom: "40px",
+      marginTop: "30px",
     },
     primaryHdg: { marginTop: "20px" },
     createAccountButton: {
@@ -46,7 +46,7 @@ const customStyles = (theme) =>
     },
     paperContainer: {
       width: "75%",
-      margin: "10% auto",
+      margin: "8% auto",
     },
     nameText: {
       margin: "20px",

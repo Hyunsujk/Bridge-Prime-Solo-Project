@@ -13,7 +13,7 @@ import RepairmanCardMapView from "../../RepairmanCardMapView/RepairmanCardMapVie
 
 const customStyles = (theme) =>
   createStyles({
-    heading: { margin: "20px 0px 10px", flexGrow: 1 },
+    heading: { margin: "20px 0px 10px", flexGrow: 1, fontWeight: "700" },
     headingPersonnel: { textAlign: "center", color: "#fff", paddingTop: "3px" },
     mapHeading: { textAlign: "center" },
     paper: { background: "#3498db", paddingBottom: "10px" },
