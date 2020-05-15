@@ -3,14 +3,27 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import {
-  Container,
-  Grid,
   Typography,
   Card,
   CardActionArea,
   CardContent,
-  Icon,
+  Chip,
+  withStyles,
+  createStyles,
 } from "@material-ui/core";
+
+const customStyles = (theme) =>
+  createStyles({
+    card: { margin: "10px" },
+    chip: {
+      display: "flex",
+      justifyContent: "center",
+      flexWrap: "wrap",
+      "& > *": {
+        margin: theme.spacing(0.5),
+      },
+    },
+  });
 
 class RepairmanCardMapView extends Component {
   componentDidMount() {
@@ -20,9 +33,6 @@ class RepairmanCardMapView extends Component {
     this.props.dispatch({
       type: "FETCH_SPECIALTY",
     });
-    this.props.dispatch({
-      type: "GET_AVAILABLE_REPAIRMAN",
-    });
   }
 
   handleClickCard = (event, id) => {
@@ -30,38 +40,46 @@ class RepairmanCardMapView extends Component {
   };
 
   render() {
-    let repairmanSpecialty = "";
+    const { classes } = this.props;
 
     return (
       <div>
         {this.props.repairman.availableRepairman.map((repairman, index) => {
-          console.log("repairman", repairman);
-          repairmanSpecialty = "";
-          repairman.user_specialty_id.map((specialtyId, index) => {
-            console.log("specialtyId", specialtyId);
-            this.props.criteria.specialty.filter((specialty, index) => {
+          let repairmanSpecialty = [];
+          repairman.user_specialty_id.forEach((specialtyId) => {
+            this.props.criteria.specialty.forEach((specialty, index) => {
               if (specialty.id === specialtyId) {
-                repairmanSpecialty = `${repairmanSpecialty} ${specialty.specialty}`;
+                repairmanSpecialty.push(
+                  <Chip
+                    key={index}
+                    label={specialty.specialty}
+                    variant="outlined"
+                  />
+                );
               }
             });
-            console.log("repairmanSpecialty", repairmanSpecialty);
           });
+
           return (
             <Card
               variant="outlined"
               key={index}
               onClick={(event) => this.handleClickCard(event, repairman.id)}
+              className={classes.card}
             >
               <CardActionArea>
                 <CardContent>
-                  <Typography>
+                  <Typography variant="h6" component="h1">
                     {repairman.first_name} {repairman.last_name}
                   </Typography>
-                  <Typography>Specialty: {repairmanSpecialty}</Typography>
-                  <Typography>
+                  <Typography variant="body2" component="h2">
                     Price Range: ${repairman.user_min_price} - $
                     {repairman.user_max_price}
                   </Typography>
+                  <Typography variant="body2" component="h2">
+                    Specialty
+                  </Typography>
+                  <div>{repairmanSpecialty}</div>
                 </CardContent>
               </CardActionArea>
             </Card>
@@ -72,4 +90,6 @@ class RepairmanCardMapView extends Component {
   }
 }
 
-export default withRouter(connect(mapStoreToProps)(RepairmanCardMapView));
+export default withStyles(customStyles)(
+  withRouter(connect(mapStoreToProps)(RepairmanCardMapView))
+);

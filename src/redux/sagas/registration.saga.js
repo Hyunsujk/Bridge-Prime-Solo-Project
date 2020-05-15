@@ -12,10 +12,6 @@ function* registerHomeownerUser(action) {
 
     // automatically log a user in after registration
     yield put({ type: "LOGIN", payload: action.payload.login });
-
-    // set to 'login' mode so they see the login screen
-    // after registration or after they log out
-    yield put({ type: "SET_TO_LOGIN_MODE" });
   } catch (error) {
     console.log("Error with user registration:", error);
     yield put({ type: "REGISTRATION_FAILED" });
@@ -32,10 +28,6 @@ function* registerRepairmanUser(action) {
 
     // automatically log a user in after registration
     yield put({ type: "LOGIN", payload: action.payload.login });
-
-    // set to 'login' mode so they see the login screen
-    // after registration or after they log out
-    yield put({ type: "SET_TO_LOGIN_MODE" });
   } catch (error) {
     console.log("Error with user registration:", error);
     yield put({ type: "REGISTRATION_FAILED" });

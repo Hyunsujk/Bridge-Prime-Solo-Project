@@ -9,8 +9,6 @@ import {
   AppBar,
   withStyles,
   createStyles,
-  // createMuiTheme,
-  // ThemeProvider,
 } from "@material-ui/core";
 
 const customStyles = (theme) =>
@@ -24,18 +22,26 @@ const customStyles = (theme) =>
     appBar: {
       background: "#FF9800",
     },
-    link: {
+    linkContainer: {
       display: "flex",
       justifyContent: "flex-end",
       flexGrow: 1,
+      flexDirection: "row",
+      alignItems: "baseline",
     },
     linkText: {
       textDecoration: "none",
       color: "#fff",
+      marginRight: "20px",
     },
     title: {
       flexGrow: 1,
       color: "#fff",
+      display: "inline-block",
+    },
+    link: {
+      flexGrow: 1,
+      display: "inline-block",
     },
   });
 
@@ -51,7 +57,6 @@ class NavBar extends Component {
     }
     return (
       <div className={classes.root}>
-        {/* <ThemeProvider theme={theme}> */}
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div>
@@ -66,21 +71,25 @@ class NavBar extends Component {
               </Link>
             </div>
 
-            <div className={classes.link}>
-              {/* Show the link to the info page and the logout button if the user is logged in */}
+            <div className={classes.linkContainer}>
+              {/* Show the link to the My Profile page and the logout button if the user is logged in */}
               {this.props.store.user.id && (
                 <>
                   <Link to="/myprofile" className={classes.linkText}>
-                    My Profile
+                    <Typography
+                      variant="body1"
+                      component="h2"
+                      className={classes.link}
+                    >
+                      My Profile
+                    </Typography>
                   </Link>
                   <LogOutButton />
                 </>
               )}
-              {/* Always show this link since the about page is not protected */}
             </div>
           </Toolbar>
         </AppBar>
-        {/* </ThemeProvider> */}
       </div>
     );
   }

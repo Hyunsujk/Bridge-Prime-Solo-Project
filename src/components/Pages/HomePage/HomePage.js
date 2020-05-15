@@ -15,6 +15,7 @@ const customStyles = (theme) =>
   createStyles({
     root: {
       textAlign: "left",
+      marginBottom: "40px",
     },
     body: {
       margin: `90px 100px 0`,
@@ -27,6 +28,7 @@ const customStyles = (theme) =>
       marginTop: `50px`,
     },
   });
+
 class HomePage extends Component {
   render() {
     const { classes } = this.props;
@@ -38,8 +40,10 @@ class HomePage extends Component {
               <Typography component="h1" variant="h3">
                 Welcome to Bridge!
               </Typography>
-              <Typography component="h2" variant="h5">
-                Where homeowners and repairmen connect
+            </div>
+            <div>
+              <Typography component="h2" variant="h6">
+                Where homeowners and repair personnel connect
               </Typography>
             </div>
             <div className={classes.loginForm}>
