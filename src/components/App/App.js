@@ -53,12 +53,6 @@ class App extends Component {
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will be redirected to the authRedirect path provided. */}
-            {/* <ProtectedRoute
-              exact
-              path="/home"
-              authRedirect="/landing"
-              component={HomePage}
-            /> */}
             <ProtectedRoute
               exact
               path="/registration"
