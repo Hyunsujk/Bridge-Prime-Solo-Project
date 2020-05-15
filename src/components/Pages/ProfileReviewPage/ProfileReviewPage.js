@@ -51,6 +51,7 @@ const customStyles = (theme) =>
     nameText: {
       margin: "20px",
       padding: "auto",
+      fontWeight: "500",
     },
     profileContent: {
       textAlign: "left",
@@ -75,6 +76,7 @@ const customStyles = (theme) =>
     },
     zipCodeBox: { display: "inline-block", marginLeft: "4px" },
     zipCode: { width: "210px", marginRight: "10px" },
+    contentSpacing: { margin: "10px 0px" },
   });
 
 class ProfileReviewPage extends Component {
@@ -269,16 +271,30 @@ class ProfileReviewPage extends Component {
 
     let userDetail = (
       <div>
-        <Typography className={classes.nameText} component="h1" variant="h4">
-          {this.props.user.first_name} {this.props.user.last_name}
-        </Typography>
-        <div className={classes.profileContent}>
-          <Typography>Email: {this.props.user.email}</Typography>
-          <Typography>
-            Address: {this.props.user.address_line1}{" "}
-            {this.props.user.address_line2} {this.props.user.city}{" "}
-            {this.props.user.state} {this.props.user.zip_code}
+        <div className={classes.contentSpacing}>
+          <Typography className={classes.nameText} component="h1" variant="h4">
+            {this.props.user.first_name} {this.props.user.last_name}
           </Typography>
+        </div>
+        <div className={classes.profileContent}>
+          <div className={classes.contentSpacing}>
+            <Typography component="h2" variant="h6">
+              Email
+            </Typography>
+            <Typography component="h3" variant="subtitle1">
+              {this.props.user.email}
+            </Typography>
+          </div>
+          <div className={classes.contentSpacing}>
+            <Typography component="h2" variant="h6">
+              Address
+            </Typography>
+            <div>
+              {this.props.user.address_line1} {this.props.user.address_line2}{" "}
+              {this.props.user.city} {this.props.user.state}{" "}
+              {this.props.user.zip_code}
+            </div>
+          </div>
         </div>
       </div>
     );
@@ -286,17 +302,55 @@ class ProfileReviewPage extends Component {
     if (this.props.user.type_id === 2) {
       userDetail = (
         <div>
-          <Typography className={classes.nameText} component="h1" variant="h4">
-            {this.props.user.first_name} {this.props.user.last_name}
-          </Typography>
-          <div className={classes.profileContent}>
-            <Typography>Email: {this.props.user.email}</Typography>
-            <Typography>Zip Code: {this.props.user.zip_code}</Typography>
-            <Typography>Radius: {userRadiusNum} </Typography>
-            <Typography>
-              Introduction: {this.props.user.introduction}
+          <div className={classes.contentSpacing}>
+            <Typography
+              className={classes.nameText}
+              component="h1"
+              variant="h4"
+            >
+              {this.props.user.first_name} {this.props.user.last_name}
             </Typography>
-            <Typography>Specialty</Typography> <div>{repairmanSpecialty}</div>
+          </div>
+          <div className={classes.profileContent}>
+            <div className={classes.contentSpacing}>
+              <Typography component="h2" variant="h6">
+                Email
+              </Typography>
+              <Typography component="h3" variant="subtitle1">
+                {this.props.user.email}
+              </Typography>
+            </div>
+            <div className={classes.contentSpacing}>
+              <Typography component="h2" variant="h6">
+                Zip Code
+              </Typography>
+              <Typography component="h3" variant="subtitle1">
+                {this.props.user.zip_code}
+              </Typography>
+            </div>
+            <div className={classes.contentSpacing}>
+              <Typography component="h2" variant="h6">
+                Radius
+              </Typography>
+              <Typography component="h3" variant="subtitle1">
+                {userRadiusNum}
+              </Typography>
+            </div>
+            <div className={classes.contentSpacing}>
+              <Typography component="h2" variant="h6">
+                Introduction
+              </Typography>
+              <Typography component="h3" variant="subtitle1">
+                {this.props.user.introduction}
+              </Typography>
+            </div>
+
+            <div className={classes.contentSpacing}>
+              <Typography component="h2" variant="h6">
+                Specialty
+              </Typography>
+              {repairmanSpecialty}
+            </div>
           </div>
         </div>
       );
