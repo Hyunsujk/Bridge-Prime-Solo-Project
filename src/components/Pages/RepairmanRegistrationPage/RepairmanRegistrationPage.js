@@ -24,7 +24,7 @@ const customStyles = (theme) =>
   createStyles({
     primaryHdg: { marginTop: "20px" },
     zipCodeBox: { display: "inline-block", marginLeft: "4px" },
-    zipCode: { width: "250px", marginRight: "14px" },
+    zipCode: { width: "210px", marginRight: "10px" },
     createAccountButton: {
       color: "#142850",
       "&:hover": {
@@ -38,13 +38,19 @@ const customStyles = (theme) =>
       flexGrow: 1,
     },
     checkbox: {
-      margin: "0",
+      marginLeft: "10px",
+    },
+    checkboxBox: {
+      color: "#FF9800",
+      "&$checked": {
+        color: "#FF9800",
+      },
     },
     textField: {
       width: "400px",
       margin: "5px",
     },
-    priceRangeBox: { width: "188px", margin: "5px" },
+    priceRangeBox: { width: "170px", margin: "5px" },
     formControlSelect: {
       minWidth: "120px",
       marginLeft: "10px",
@@ -53,6 +59,11 @@ const customStyles = (theme) =>
       marginTop: "20px",
       margin: "auto",
       maxWidth: "75%",
+    },
+    warning: {
+      color: "#fff",
+      background: "red",
+      textAlign: "center",
     },
   });
 
@@ -92,8 +103,6 @@ class RepairmanRegistrationPage extends Component {
       return this.state.specialty_id[itemKey];
     });
 
-    console.log(checkedBox);
-
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
@@ -122,16 +131,10 @@ class RepairmanRegistrationPage extends Component {
   };
 
   changeSelectedRadius = (event) => {
-    console.log(event.target.value);
-    this.setState(
-      {
-        ...this.state,
-        radius_id: event.target.value,
-      },
-      () => {
-        console.log("radius", this.state.radius_id);
-      }
-    );
+    this.setState({
+      ...this.state,
+      radius_id: event.target.value,
+    });
   };
 
   changeSelectedSpecialty = (item, event) => {
@@ -146,19 +149,22 @@ class RepairmanRegistrationPage extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.criteria.specialty);
 
     return (
       <div>
         <Container maxWidth={false}>
           <div className={classes.primaryHdg}>
             <Typography component="h1" variant="h4">
-              Repairman Registration Page
+              Repair Personnel Registration Page
             </Typography>
             {this.props.errors.registrationMessage && (
-              <h2 className="alert" role="alert">
+              <Typography
+                variant="h6"
+                component="h1"
+                className={classes.warning}
+              >
                 {this.props.errors.registrationMessage}
-              </h2>
+              </Typography>
             )}
           </div>
           <form className={classes.form}>
@@ -166,6 +172,7 @@ class RepairmanRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Username"
                     variant="outlined"
@@ -176,6 +183,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="password"
                     label="Password"
                     variant="outlined"
@@ -186,6 +194,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="First Name"
                     variant="outlined"
@@ -196,6 +205,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Last Name"
                     variant="outlined"
@@ -206,6 +216,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Email"
                     variant="outlined"
@@ -217,6 +228,7 @@ class RepairmanRegistrationPage extends Component {
 
                 <div className={classes.zipCodeBox}>
                   <TextField
+                    required
                     type="text"
                     label="Zip Code"
                     variant="outlined"
@@ -225,6 +237,7 @@ class RepairmanRegistrationPage extends Component {
                     onChange={this.handleInputChangeFor("zip_code")}
                   />
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.formControlSelect}
                   >
@@ -251,6 +264,7 @@ class RepairmanRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Introduce Yourself"
                     variant="outlined"
@@ -264,6 +278,7 @@ class RepairmanRegistrationPage extends Component {
                 </div>
                 <div>
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.priceRangeBox}
                   >
@@ -280,6 +295,7 @@ class RepairmanRegistrationPage extends Component {
                     />
                   </FormControl>
                   <FormControl
+                    required
                     variant="outlined"
                     className={classes.priceRangeBox}
                   >
@@ -301,33 +317,40 @@ class RepairmanRegistrationPage extends Component {
                 <div>
                   <Container maxWidth={false}>
                     <Typography component="h3" variant="body1">
-                      Specialty
+                      Specialty *
                     </Typography>
                     <Paper variant="outlined" className={classes.paper}>
                       <Grid container>
                         {this.props.criteria.specialty.map((item, index) => (
                           <Grid item xs={4} key={index}>
                             <div className={classes.checkbox}>
-                              <FormControlLabel
-                                key={index}
-                                id={item.id}
-                                control={
-                                  <Checkbox
-                                    checked={
-                                      this.state.specialty_id[item.id] || false
-                                    }
-                                    name={item.specialty}
-                                    onChange={(event) =>
-                                      this.changeSelectedSpecialty(item, event)
-                                    }
-                                  />
-                                }
-                                label={
-                                  <Typography component="h4" variant="body2">
-                                    {item.specialty}
-                                  </Typography>
-                                }
-                              />
+                              <FormControl required component="fieldset">
+                                <FormControlLabel
+                                  key={index}
+                                  id={item.id}
+                                  control={
+                                    <Checkbox
+                                      color="primary"
+                                      checked={
+                                        this.state.specialty_id[item.id] ||
+                                        false
+                                      }
+                                      name={item.specialty}
+                                      onChange={(event) =>
+                                        this.changeSelectedSpecialty(
+                                          item,
+                                          event
+                                        )
+                                      }
+                                    />
+                                  }
+                                  label={
+                                    <Typography component="h4" variant="body2">
+                                      {item.specialty}
+                                    </Typography>
+                                  }
+                                />
+                              </FormControl>
                             </div>
                           </Grid>
                         ))}

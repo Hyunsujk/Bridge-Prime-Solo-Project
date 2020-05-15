@@ -17,6 +17,9 @@ import { faHouseUser } from "@fortawesome/free-solid-svg-icons";
 
 const customStyles = (theme) =>
   createStyles({
+    root: {
+      marginBottom: "85px",
+    },
     primaryHdg: { margin: "20px 0" },
     card: { margin: "auto", textAlign: "center" },
     cardActionArea: { height: "300px" },
@@ -41,7 +44,7 @@ class RegistrationMainPage extends Component {
 
     return (
       <div>
-        <Container maxWidth={false}>
+        <Container maxWidth={false} className={classes.root}>
           <div className={classes.primaryHdg}>
             <Typography component="h1" variant="h4">
               Join us on Bridge!
@@ -82,7 +85,7 @@ class RegistrationMainPage extends Component {
                       variant="h5"
                       className={classes.cardContent}
                     >
-                      I am a repairman
+                      I am a repair personnel
                     </Typography>
                   </CardContent>
                 </CardActionArea>

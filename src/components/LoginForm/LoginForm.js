@@ -48,6 +48,11 @@ const customStyles = (theme) =>
       flexGrow: 1,
       alignItems: "baseline",
     },
+    warning: {
+      color: "#fff",
+      background: "red",
+      textAlign: "center",
+    },
   });
 
 class LoginForm extends Component {
@@ -86,9 +91,9 @@ class LoginForm extends Component {
     return (
       <div>
         {this.props.store.errors.loginMessage && (
-          <h2 className="alert" role="alert">
+          <Typography variant="h6" component="h1" className={classes.warning}>
             {this.props.store.errors.loginMessage}
-          </h2>
+          </Typography>
         )}
         <div className={classes.loginBox}>
           <Typography component="h2" variant="body1">

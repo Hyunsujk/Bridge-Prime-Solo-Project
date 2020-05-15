@@ -6,10 +6,30 @@ import {
   withStyles,
   createStyles,
   Container,
-  Grid,
   Typography,
+  Paper,
+  Chip,
 } from "@material-ui/core";
-const customStyles = (theme) => createStyles({});
+
+const customStyles = (theme) =>
+  createStyles({
+    profileContent: {
+      textAlign: "left",
+      marginBottom: "20px",
+    },
+    nameText: {
+      margin: "20px",
+      padding: "auto",
+    },
+    container: {
+      margin: "80px auto 40px",
+      maxWidth: "75%",
+      padding: "auto 0",
+      height: "350px",
+    },
+    paper: { margin: "auto 0" },
+    introductionContainer: { marginTop: "10px" },
+  });
 
 class RepairmanProfilePage extends Component {
   componentDidMount() {
@@ -29,34 +49,58 @@ class RepairmanProfilePage extends Component {
     const { classes } = this.props;
     const repairmanSpecialtyId =
       this.props.repairman.selectedRepairman.user_specialty_id || [];
-    console.log(repairmanSpecialtyId);
+    let repairmanSpecialty = [];
+    repairmanSpecialtyId.forEach((specialtyId) => {
+      this.props.criteria.specialty.forEach((specialty) => {
+        if (specialty.id === specialtyId) {
+          repairmanSpecialty.push(
+            <Chip label={specialty.specialty} variant="outlined" />
+          );
+        }
+      });
+    });
 
     return (
-      <Container>
-        <Typography>
-          {this.props.repairman.selectedRepairman.first_name}
-          {this.props.repairman.selectedRepairman.last_name}
-        </Typography>
-        <Typography>
-          {this.props.repairman.selectedRepairman.introduction}
-        </Typography>
-        <Typography>
-          Price Range: ${this.props.repairman.selectedRepairman.user_min_price}{" "}
-          - ${this.props.repairman.selectedRepairman.user_max_price}
-        </Typography>
-        <Typography>Specialty</Typography>
-        {repairmanSpecialtyId.map((specialtyId, index) => {
-          console.log("specialtyId", specialtyId);
-          const repairmanSpecialty = this.props.criteria.specialty.filter(
-            (specialty) => {
-              return specialty.id == specialtyId;
-            }
-          );
-          return (
-            <p>{repairmanSpecialty[0] && repairmanSpecialty[0].specialty}</p>
-          );
-        })}
-      </Container>
+      <div className={classes.container}>
+        <Paper variant="outlined" className={classes.paper}>
+          <center>
+            <Container maxWidth={false}>
+              <div>
+                <Typography
+                  className={classes.nameText}
+                  component="h1"
+                  variant="h4"
+                >
+                  {this.props.repairman.selectedRepairman.first_name}{" "}
+                  {this.props.repairman.selectedRepairman.last_name}
+                </Typography>
+                <div className={classes.profileContent}>
+                  <Typography>
+                    Email: {this.props.repairman.selectedRepairman.email}
+                  </Typography>
+
+                  <Typography>
+                    Price Range: $
+                    {this.props.repairman.selectedRepairman.user_min_price} - $
+                    {this.props.repairman.selectedRepairman.user_max_price}
+                  </Typography>
+                  <Typography>Specialty</Typography>
+                  <div>{repairmanSpecialty}</div>
+                  <div className={classes.introductionContainer}>
+                    <Typography>
+                      {this.props.repairman.selectedRepairman.first_name}{" "}
+                      says...
+                    </Typography>
+                    <Typography>
+                      {this.props.repairman.selectedRepairman.introduction}
+                    </Typography>
+                  </div>
+                </div>
+              </div>
+            </Container>
+          </center>
+        </Paper>
+      </div>
     );
   }
 }

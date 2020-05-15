@@ -5,6 +5,7 @@ import user from "./user.reducer";
 import criteria from "./criteria.reducer";
 import cord from "./cord.reducer";
 import repairman from "./repairman.reducer";
+import search from "./search.reducer";
 import userDetails from "./userDetails.reducer";
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   criteria, // will have criteria details for repairman
   cord,
   repairman,
+  search,
   userDetails,
 });
 

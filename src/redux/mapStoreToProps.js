@@ -10,6 +10,7 @@ const mapStoreToProps = (reduxState) => {
     errors: reduxState.errors,
     criteria: reduxState.criteria,
     repairman: reduxState.repairman,
+    availableRepairman: reduxState.repairman.availableRepairman,
   };
 };
 

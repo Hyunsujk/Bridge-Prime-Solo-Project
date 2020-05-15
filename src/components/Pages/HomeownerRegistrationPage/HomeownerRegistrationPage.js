@@ -13,6 +13,9 @@ import {
 
 const customStyles = (theme) =>
   createStyles({
+    root: {
+      marginBottom: "25px",
+    },
     primaryHdg: { marginTop: "20px" },
     createAccountButton: {
       color: "#142850",
@@ -35,6 +38,11 @@ const customStyles = (theme) =>
       width: "400px",
       margin: "5px",
     },
+    warning: {
+      color: "#fff",
+      background: "red",
+      textAlign: "center",
+    },
   });
 
 class HomeownerRegistrationPage extends Component {
@@ -56,7 +64,6 @@ class HomeownerRegistrationPage extends Component {
 
   registerHomeownerUser = (event) => {
     event.preventDefault();
-    console.log("create an account");
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_HOMEOWNER",
@@ -89,15 +96,19 @@ class HomeownerRegistrationPage extends Component {
 
     return (
       <div>
-        <Container maxWidth={false}>
+        <Container maxWidth={false} className={classes.root}>
           <div className={classes.primaryHdg}>
             <Typography component="h1" variant="h4">
               Homeowner Registration Page
             </Typography>
             {this.props.errors.registrationMessage && (
-              <h2 className="alert" role="alert">
+              <Typography
+                variant="h6"
+                component="h1"
+                className={classes.warning}
+              >
                 {this.props.errors.registrationMessage}
-              </h2>
+              </Typography>
             )}
           </div>
           <form className={classes.form}>
@@ -105,6 +116,7 @@ class HomeownerRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Username"
                     variant="outlined"
@@ -115,6 +127,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="password"
                     label="Password"
                     variant="outlined"
@@ -125,6 +138,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="First Name"
                     variant="outlined"
@@ -135,6 +149,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Last Name"
                     variant="outlined"
@@ -145,6 +160,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Email"
                     variant="outlined"
@@ -157,6 +173,7 @@ class HomeownerRegistrationPage extends Component {
               <Grid item xs={6} lg={6} md={6} sm={12}>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Address Line 1"
                     variant="outlined"
@@ -167,6 +184,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Address Line 2"
                     variant="outlined"
@@ -177,6 +195,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="City"
                     variant="outlined"
@@ -187,6 +206,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="State"
                     variant="outlined"
@@ -197,6 +217,7 @@ class HomeownerRegistrationPage extends Component {
                 </div>
                 <div>
                   <TextField
+                    required
                     type="text"
                     label="Zip Code"
                     variant="outlined"
