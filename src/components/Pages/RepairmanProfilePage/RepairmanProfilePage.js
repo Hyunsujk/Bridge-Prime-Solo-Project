@@ -22,12 +22,13 @@ const customStyles = (theme) =>
       padding: "auto",
     },
     container: {
-      margin: "80px auto 30px",
+      margin: "80px auto 40px",
       maxWidth: "75%",
       padding: "auto 0",
       height: "350px",
     },
     paper: { margin: "auto 0" },
+    introductionContainer: { marginTop: "10px" },
   });
 
 class RepairmanProfilePage extends Component {
@@ -77,16 +78,23 @@ class RepairmanProfilePage extends Component {
                   <Typography>
                     Email: {this.props.repairman.selectedRepairman.email}
                   </Typography>
-                  <Typography>
-                    {this.props.repairman.selectedRepairman.introduction}
-                  </Typography>
+
                   <Typography>
                     Price Range: $
                     {this.props.repairman.selectedRepairman.user_min_price} - $
                     {this.props.repairman.selectedRepairman.user_max_price}
                   </Typography>
                   <Typography>Specialty</Typography>
-                  {repairmanSpecialty}
+                  <div>{repairmanSpecialty}</div>
+                  <div className={classes.introductionContainer}>
+                    <Typography>
+                      {this.props.repairman.selectedRepairman.first_name}{" "}
+                      says...
+                    </Typography>
+                    <Typography>
+                      {this.props.repairman.selectedRepairman.introduction}
+                    </Typography>
+                  </div>
                 </div>
               </div>
             </Container>

@@ -48,6 +48,7 @@ const customStyles = (theme) =>
 
       width: "100%",
       border: "#035aa6",
+      borderRadius: "25px",
       [theme.breakpoints.up("sm")]: {
         width: "12ch",
         "&:focus": {
