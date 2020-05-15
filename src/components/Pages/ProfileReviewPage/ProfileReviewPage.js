@@ -531,6 +531,7 @@ class ProfileReviewPage extends Component {
                               id={item.id}
                               control={
                                 <Checkbox
+                                  color="primary"
                                   checked={this.state.specialty_id[item.id]}
                                   name={item.specialty}
                                   onChange={(event) =>
