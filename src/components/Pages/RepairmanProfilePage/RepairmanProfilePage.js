@@ -23,12 +23,12 @@ const customStyles = (theme) =>
       fontWeight: "500",
     },
     container: {
-      margin: "80px auto 40px",
+      margin: "80px auto 90px",
       maxWidth: "75%",
       padding: "auto 0",
       height: "350px",
     },
-    paper: { margin: "auto 0" },
+    paper: { margin: "auto" },
     introductionContainer: { marginTop: "10px" },
     contentSpacing: { margin: "10px 0px" },
   });
