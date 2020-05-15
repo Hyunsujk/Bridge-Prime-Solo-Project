@@ -9,8 +9,6 @@ import {
   AppBar,
   withStyles,
   createStyles,
-  // createMuiTheme,
-  // ThemeProvider,
 } from "@material-ui/core";
 
 const customStyles = (theme) =>
@@ -59,7 +57,6 @@ class NavBar extends Component {
     }
     return (
       <div className={classes.root}>
-        {/* <ThemeProvider theme={theme}> */}
         <AppBar position="static" className={classes.appBar}>
           <Toolbar>
             <div>
@@ -75,7 +72,7 @@ class NavBar extends Component {
             </div>
 
             <div className={classes.linkContainer}>
-              {/* Show the link to the info page and the logout button if the user is logged in */}
+              {/* Show the link to the My Profile page and the logout button if the user is logged in */}
               {this.props.store.user.id && (
                 <>
                   <Link to="/myprofile" className={classes.linkText}>
@@ -90,11 +87,9 @@ class NavBar extends Component {
                   <LogOutButton />
                 </>
               )}
-              {/* Always show this link since the about page is not protected */}
             </div>
           </Toolbar>
         </AppBar>
-        {/* </ThemeProvider> */}
       </div>
     );
   }

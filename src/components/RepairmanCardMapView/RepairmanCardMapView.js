@@ -3,13 +3,10 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import {
-  Container,
-  Grid,
   Typography,
   Card,
   CardActionArea,
   CardContent,
-  Icon,
   Chip,
   withStyles,
   createStyles,
@@ -36,9 +33,6 @@ class RepairmanCardMapView extends Component {
     this.props.dispatch({
       type: "FETCH_SPECIALTY",
     });
-    // this.props.dispatch({
-    //   type: "GET_AVAILABLE_REPAIRMAN",
-    // });
   }
 
   handleClickCard = (event, id) => {
@@ -51,13 +45,16 @@ class RepairmanCardMapView extends Component {
     return (
       <div>
         {this.props.repairman.availableRepairman.map((repairman, index) => {
-          console.log("repairman", repairman);
           let repairmanSpecialty = [];
           repairman.user_specialty_id.forEach((specialtyId) => {
-            this.props.criteria.specialty.forEach((specialty) => {
+            this.props.criteria.specialty.forEach((specialty, index) => {
               if (specialty.id === specialtyId) {
                 repairmanSpecialty.push(
-                  <Chip label={specialty.specialty} variant="outlined" />
+                  <Chip
+                    key={index}
+                    label={specialty.specialty}
+                    variant="outlined"
+                  />
                 );
               }
             });

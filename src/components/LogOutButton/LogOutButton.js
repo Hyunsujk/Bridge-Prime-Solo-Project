@@ -23,9 +23,6 @@ class LogOutButton extends Component {
     return (
       <Button
         className={classes.logoutButton}
-        // This button shows up in multiple locations and is styled differently
-        // because it's styled differently depending on where it is used, the className
-        // is passed to it from it's parents through React props
         onClick={() => {
           this.props.dispatch({ type: "LOGOUT" });
           this.props.history.push("/home");

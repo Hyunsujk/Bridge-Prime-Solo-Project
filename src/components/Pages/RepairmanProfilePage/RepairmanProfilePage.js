@@ -10,6 +10,7 @@ import {
   Paper,
   Chip,
 } from "@material-ui/core";
+
 const customStyles = (theme) =>
   createStyles({
     profileContent: {
@@ -47,7 +48,6 @@ class RepairmanProfilePage extends Component {
     const { classes } = this.props;
     const repairmanSpecialtyId =
       this.props.repairman.selectedRepairman.user_specialty_id || [];
-    console.log(repairmanSpecialtyId);
     let repairmanSpecialty = [];
     repairmanSpecialtyId.forEach((specialtyId) => {
       this.props.criteria.specialty.forEach((specialty) => {

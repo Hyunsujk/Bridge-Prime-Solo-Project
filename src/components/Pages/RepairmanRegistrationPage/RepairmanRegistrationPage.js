@@ -92,8 +92,6 @@ class RepairmanRegistrationPage extends Component {
       return this.state.specialty_id[itemKey];
     });
 
-    console.log(checkedBox);
-
     if (this.state.login.username && this.state.login.password) {
       this.props.dispatch({
         type: "REGISTER_REPAIRMAN",
@@ -122,16 +120,10 @@ class RepairmanRegistrationPage extends Component {
   };
 
   changeSelectedRadius = (event) => {
-    console.log(event.target.value);
-    this.setState(
-      {
-        ...this.state,
-        radius_id: event.target.value,
-      },
-      () => {
-        console.log("radius", this.state.radius_id);
-      }
-    );
+    this.setState({
+      ...this.state,
+      radius_id: event.target.value,
+    });
   };
 
   changeSelectedSpecialty = (item, event) => {
@@ -146,7 +138,6 @@ class RepairmanRegistrationPage extends Component {
 
   render() {
     const { classes } = this.props;
-    console.log(this.props.criteria.specialty);
 
     return (
       <div>

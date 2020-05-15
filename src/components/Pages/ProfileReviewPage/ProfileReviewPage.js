@@ -68,11 +68,6 @@ const customStyles = (theme) =>
       margin: "auto",
       maxWidth: "75%",
     },
-    buttonDisplay: {
-      display: "flex",
-      justifyContent: "flex-end",
-      flexGrow: 1,
-    },
     priceRangeBox: { width: "170px", margin: "5px" },
     formControlSelect: {
       minWidth: "120px",
@@ -113,10 +108,30 @@ class ProfileReviewPage extends Component {
   }
 
   handleEdit = (event) => {
+    let checkedSpecialty = {};
+    this.props.criteria.specialty.forEach((specialty) => {
+      checkedSpecialty[specialty.id] = this.specialtyStatusCheck(specialty.id);
+    });
     this.setState({
       isEditable: true,
+      specialty_id: checkedSpecialty,
     });
   };
+
+  specialtyStatusCheck = (id) => {
+    let checkStatus = this.state.specialty_id[id] || false;
+    if (this.props.store.userDetails[0].user_specialty_id != null) {
+      this.props.store.userDetails[0].user_specialty_id.forEach(
+        (specialtyId) => {
+          if (id === specialtyId) {
+            checkStatus = true;
+          }
+        }
+      );
+    }
+    return checkStatus;
+  };
+
   handleSave = (event) => {
     let checkboxStatus = Object.keys(this.state.specialty_id);
 
@@ -124,7 +139,6 @@ class ProfileReviewPage extends Component {
       return this.state.specialty_id[itemKey];
     });
 
-    console.log(checkedBox);
     const userDetails = this.props.store.userDetails[0];
 
     let newDetails = {
@@ -185,7 +199,6 @@ class ProfileReviewPage extends Component {
         newDetails.introduction = this.props.user.introduction;
       }
     }
-    console.log(this.props.user.id);
     this.props.dispatch({
       type: "UPDATE_PROFILE",
       payload: newDetails,
@@ -203,16 +216,10 @@ class ProfileReviewPage extends Component {
   };
 
   changeSelectedRadius = (event) => {
-    console.log(event.target.value);
-    this.setState(
-      {
-        ...this.state,
-        radius_id: event.target.value,
-      },
-      () => {
-        console.log("radius", this.state.radius_id);
-      }
-    );
+    this.setState({
+      ...this.state,
+      radius_id: event.target.value,
+    });
   };
 
   changeSelectedSpecialty = (item, event) => {
@@ -244,10 +251,10 @@ class ProfileReviewPage extends Component {
     let repairmanSpecialty = [];
 
     repairmanSpecialtyId.forEach((specialtyId) => {
-      this.props.criteria.specialty.forEach((specialty) => {
+      this.props.criteria.specialty.forEach((specialty, index) => {
         if (specialty.id === specialtyId) {
           repairmanSpecialty.push(
-            <Chip label={specialty.specialty} variant="outlined" />
+            <Chip key={index} label={specialty.specialty} variant="outlined" />
           );
         }
       });
@@ -521,13 +528,10 @@ class ProfileReviewPage extends Component {
                         <Grid item xs={4} key={index}>
                           <div className={classes.checkbox}>
                             <FormControlLabel
-                              key={index}
                               id={item.id}
                               control={
                                 <Checkbox
-                                  checked={
-                                    this.state.specialty_id[item.id] || false
-                                  }
+                                  checked={this.state.specialty_id[item.id]}
                                   name={item.specialty}
                                   onChange={(event) =>
                                     this.changeSelectedSpecialty(item, event)

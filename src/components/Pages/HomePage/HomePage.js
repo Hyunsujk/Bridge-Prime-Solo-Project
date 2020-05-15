@@ -28,6 +28,7 @@ const customStyles = (theme) =>
       marginTop: `50px`,
     },
   });
+
 class HomePage extends Component {
   render() {
     const { classes } = this.props;

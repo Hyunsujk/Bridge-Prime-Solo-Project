@@ -1,14 +1,11 @@
 import React from "react";
 import { Route, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
-import LoginPage from "../LoginPage/LoginPage";
-import RegisterPage from "../RegisterPage/RegisterPage";
 import mapStoreToProps from "../../redux/mapStoreToProps";
 import RegistrationMainPage from "../Pages/RegistrationMainPage/RegistrationMainPage";
 import HomeownerRegistrationPage from "../Pages/HomeownerRegistrationPage/HomeownerRegistrationPage";
 import RepairmanRegistrationPage from "../Pages/RepairmanRegistrationPage/RepairmanRegistrationPage";
-import LandingPage from "../Pages/LandingPage/LandingPage";
-import RepairmanProfilePage from "../Pages/RepairmanProfilePage/RepairmanProfilePage";
+import HomePage from "../Pages/HomePage/HomePage";
 
 // A Custom Wrapper Component -- This will keep our code DRY.
 // Responsible for watching redux state, and returning an appropriate component
@@ -38,10 +35,6 @@ const ProtectedRoute = (props) => {
     // if the user is logged in (only logged in users have ids)
     // show the component that is protected
     ComponentToShow = ComponentToProtect;
-  } else if (store.loginMode === "login") {
-    //   // if they are not logged in, check the loginMode on Redux State
-    //   // if the mode is 'login', show the LoginPage
-    ComponentToShow = LoginPage;
   } else if (store.loginMode === "registerHomeowner") {
     // the the user is not logged in and the mode is not 'login'
     // show the RegisterPage
@@ -55,7 +48,7 @@ const ProtectedRoute = (props) => {
     // show the RegisterPage
     ComponentToShow = RegistrationMainPage;
   } else {
-    ComponentToShow = LandingPage;
+    ComponentToShow = HomePage;
   }
 
   // redirect a logged in user if an authRedirect prop has been provided
