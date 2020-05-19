@@ -59,7 +59,7 @@ React.js, Redux, Redux-Saga, Passport, JavaScript, Node.js, Express, PostgreSQL,
 
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) in KCMO, especially my Ursus Cohort mates and instructors, Myron and Scott
+Thanks to [Prime Digital Academy](www.primeacademy.io) in KCMO, especially my Ursus cohort mates and instructors, Myron and Scott
 
 ## Support
 
