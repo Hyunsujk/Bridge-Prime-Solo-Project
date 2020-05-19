@@ -15,6 +15,7 @@ To see the fully functional site deployed on heroku, please visit: [Bridge](http
 
 ![Home Page](documentation/images/Homepage.png)
 ![Landing Page](documentation/images/Landingpage.png)
+![Repair Personnel Profile Page](documentation/images/Repair-personnel-profile.png)
 
 ### Prerequisites
 
@@ -36,15 +37,15 @@ To see the fully functional site deployed on heroku, please visit: [Bridge](http
 
 New user
 
-1. A new user can create an account by clicking **Register** button
-2. The new user will select whether they are homeowner user or repair personnel user
-3. Depends on whether they are homeowner or repair personnel, they will be guided to applicable registration page for them.
-4. Once they finished registration, they will be automatically logged in and guided to landing page
+1. A new user can create an account by clicking **Register** button.
+2. The new user will select whether they are homeowner user or repair personnel user.
+3. Depends on whether they are homeowner or repair personnel, they will be guided to an applicable registration page for them.
+4. Once they finished registration, they will be automatically logged in and guided to the landing page.
 
 Registered user
 
-1. Whether the user is homeowner or repair personnel, once they are logged in, they will see a map with repair personnel pinned on it
-2. on the right side, the user can view repair personnel in a list view
+1. Whether the user is homeowner or repair personnel, once the user is logged in, the user will see a map with pins that display the location of repair personnel. Once the user clicks a pin on the map, the repair personnel's name and link to the repair personnel's profile will be displayed around the clicked pin.
+2. A list of repair personnel is located on the right side of the application. When the user clicks a repair personnel profile card, the user will be guided to the repair personnel's profile page.
 3. The user can view their profile by clicking **My Profile** link on top right
 4. On the **My Profile** page, the user has an option to edit their profile
 
