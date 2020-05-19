@@ -35,14 +35,14 @@ To see the fully functional site deployed on heroku, please visit: [Bridge](http
 
 ## Usage
 
-New user
+### New user
 
 1. A new user can create an account by clicking **Register** button.
 2. The new user will select whether they are homeowner user or repair personnel user.
 3. Depends on whether they are homeowner or repair personnel, they will be guided to an applicable registration page for them.
 4. Once they finished registration, they will be automatically logged in and guided to the landing page.
 
-Registered user
+### Registered user
 
 1. Whether the user is homeowner or repair personnel, once the user is logged in, the user will see a map with pins that display the location of repair personnel. Once the user clicks a pin on the map, the repair personnel's name and link to the repair personnel's profile will be displayed around the clicked pin.
 2. A list of repair personnel is located on the right side of the application. When the user clicks a repair personnel profile card, the user will be guided to the repair personnel's profile page.
