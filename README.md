@@ -1,4 +1,4 @@
-# PROJECT NAME
+# Bridge
 
 ## Description
 
@@ -56,7 +56,7 @@ React.js, Redux, Redux-Saga, Passport, JavaScript, Node.js, Express, PostgreSQL,
 
 ## Acknowledgement
 
-Thanks to [Prime Digital Academy](www.primeacademy.io) who equipped and helped me to make this application a reality. (Thank your people)
+Thanks to [Prime Digital Academy](www.primeacademy.io) in KCMO, especially my Ursus Cohort mates and instructors, Myron and Scott
 
 ## Support
 
