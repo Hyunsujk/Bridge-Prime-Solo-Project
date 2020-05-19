@@ -9,6 +9,8 @@ Also, when I was an aircraft mechanic, some of my coworkers fixed houses for the
 
 To see the fully functional site deployed on heroku, please visit: [Bridge](https://afternoon-chamber-15478.herokuapp.com/#/home)
 
+\*Recommend to adjust the zoom setting of the browser to 125% for the best optimized view
+
 ## Screen Shot
 
 ![Home Page](documentation/images/Homepage.png)
